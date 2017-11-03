@@ -10,6 +10,9 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var minifyCSS = require('gulp-minify-css');
 var imagemin = require('gulp-imagemin');
+var smushit = require('gulp-smushit');
+var pngquant = require('imagemin-pngquant');
+var cache = require('gulp-cache');
 var ngHtml2Js = require("gulp-ng-html2js");
 var minifyHtml = require("gulp-minify-html");
 var replace = require('gulp-replace');
@@ -21,9 +24,9 @@ var version = "1.0.0";
 var config = {
     app: {
         sass: 'app/**/*.scss',
-        js: 'app/**/*.js',
+        js: ['app/static/js/**/*.js', 'app/component_modules/**/*.js', 'app/components/**/*.js', 'app/views/**/*.js'],
         html: 'app/*/**/*.html',
-        images: ['app/**/*.jpg', 'app/**/*.png'],
+        images: 'app/**/*.{png,jpg,gif,ico}',
         index: 'app/index.html',
         test: 'test/',
         prod: 'prod/'
@@ -32,12 +35,12 @@ var config = {
         sass: 'rev/**/*.scss',
         js: 'rev/**/*.js',
         html: 'rev/**/*.html',
-        images: ['rev/**/*.jpg', 'app/**/*.png'],
+        images: 'rev/**/*.{png,jpg,gif,ico}',
         json: 'rev/json/'
     },
     api: {
-        prodApi: "http://api.yfq.cn",
-        testApi: "http://testApi.yfq.cn"
+        prodApi: "http://m.ljker.com/api",
+        testApi: "http://test.ljker.com/api"
     }
 };
 
@@ -49,7 +52,9 @@ gulp.task('clean', function () {
 
 gulp.task('images', function () {
     return gulp.src(config.app.images)
-        .pipe(imagemin())
+        .pipe(cache(smushit({
+            verbose: true
+        })))
         .pipe(rev())
         .pipe(gulp.dest(config.app.test))
         .pipe(gulp.dest(config.app.prod))
@@ -151,13 +156,9 @@ gulp.task('watch', function () {
             config.app.index
         ],
         [
-            'images',
-            'sass',
-            'html',
-            'js',
-            'index'
+            'dev'
         ]
     );
 });
 
-gulp.task('default', ['dev']);
+gulp.task('default', ['dev', 'watch']);

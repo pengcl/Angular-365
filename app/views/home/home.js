@@ -4,13 +4,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     // 设定路由
     $stateProvider
-        .state('ljIndexAPhones', { //app首页
-            url: "/phone/lj/A/phones",
-            templateUrl: function ($stateParams) {
-                return 'pages/phone/lj/A/index/index.html';
-            },
-            controller: "ljIndexAPhonesController"
+        .state('home', { //关于我们
+            url: "/home",
+            templateUrl: "views/home/home.html",
+            controller: "homeController"
         });
-}]).controller('ljIndexAPhonesController', ['$scope', '$location', '$http', '$stateParams', '$interval', '$timeout', '$cookieStore', function ($scope, $location, $http, $stateParams, $interval, $timeout, $cookieStore) {
-
+}]).controller('homeController', ['$scope', function ($scope) {
 }]);

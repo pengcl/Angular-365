@@ -1,0 +1,56 @@
+.card {
+  margin: 0.07rem;
+  background: #ffb81d;
+  border-radius: 0.04rem;
+  font-size: 0.12rem;
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: -1px;
+  position: relative;
+  overflow: hidden;
+  .hd {
+    padding-top: 0.03rem;
+  }
+  .bd {
+    height: 0.6rem;
+    position: relative;
+    .img {
+      position: absolute;
+      width: 80%;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+  .ft {
+    border-top: 1px solid #fff;
+    padding-top: 0.02rem;
+    color: #b04200;
+  }
+  .card-overlay {
+    background: rgba(251, 191, 78, 0.89);
+    border-radius: 0.04rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    img {
+      width: 60%;
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+  &.checked {
+    .box-overlay {
+      display: block;
+    }
+  }
+}

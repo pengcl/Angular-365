@@ -1,0 +1,20 @@
+.notes {
+  display: flex;
+  align-items: center;
+  margin: 0 0.3rem;
+  padding: 0.05rem 0.1rem;
+  background: #7d89d5;
+  font-size: 0.12rem;
+  line-height: 0.22rem;
+  border-radius: 0.06rem;
+  color: #fff;
+  .hd {
+
+  }
+  .bd {
+    flex: 1;
+  }
+  .ft {
+    text-align: right;
+  }
+}

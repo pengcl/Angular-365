@@ -1,8 +1,9 @@
-angular.directive("topNav", [function () {
+
+app.directive("topNav", [function () {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: "modules/nav/nav.html",
+        templateUrl: "component_modules/topNav/topNav.html",
         link: function (scope, element, attrs) {
 
             scope.navItem = JSON.parse(attrs.navItem);

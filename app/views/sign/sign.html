@@ -1,0 +1,88 @@
+<div class="page sign">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"每日签到"}'></top-nav>
+    <div class="content-scrollable">
+        <h1 class="title"><img src="views/sign/title.png"></h1>
+        <div class="coupon">
+            <img src="views/sign/coupon.png">
+        </div>
+        <div class="tips">已累计签到：<span>7</span>次</div>
+        <div class="btn-wrap circle">
+            <a class="btn" href="javascript:;" ng-click="overlayOpen = true">立即领取</a>
+        </div>
+        <div class="sign-panel">
+            <ul class="sign-lists pure-g">
+                <li class="sign-item pure-u-1-4">
+                    <div class="card checked">
+                        <div class="hd">2次转盘机会</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/sign/item-1.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到3次</div>
+                        <div class="card-overlay">
+                            <img src="views/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap circle small checked">
+                        <a class="btn" href="javascript:;" ng-click="overlayOpen = true">已领取</a>
+                    </div>
+                </li>
+                <li class="sign-item pure-u-1-4">
+                    <div class="card">
+                        <div class="hd">2次转盘机会</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/sign/item-2.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到3次</div>
+                        <div class="card-overlay">
+                            <img src="views/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap circle small">
+                        <a class="btn" href="javascript:;" ng-click="overlayOpen = true">立即领取</a>
+                    </div>
+                </li>
+                <li class="sign-item pure-u-1-4">
+                    <div class="card">
+                        <div class="hd">2次转盘机会</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/sign/item-3.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到3次</div>
+                        <div class="card-overlay">
+                            <img src="views/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap small circle">
+                        <a class="btn" href="javascript:;" ng-click="overlayOpen = true">立即领取</a>
+                    </div>
+                </li>
+                <li class="sign-item pure-u-1-4">
+                    <div class="card">
+                        <div class="hd">2次转盘机会</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/sign/item-4.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到3次</div>
+                        <div class="card-overlay">
+                            <img src="views/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap small circle">
+                        <a class="btn" href="javascript:;" ng-click="overlayOpen = true">立即领取</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div ng-include="'views/include/profit/profit.html'"></div>
+    </div>
+    <app-dialog></app-dialog>
+</div>

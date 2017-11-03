@@ -1,0 +1,60 @@
+.btn {
+  width: 100%;
+  display: block;
+  border-radius: 0.04rem;
+  font-size: 0.18rem;
+  line-height: 0.32rem;
+  padding: 0.05rem;
+  background: #fa4e4e;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: -0.04rem 0 0 0;
+  &.radius {
+    border-radius: 0.04rem;
+  }
+  &.circle {
+    border-radius: 10em;
+  }
+  &.small {
+    font-size: 0.14rem;
+    line-height: 0.24rem;
+    margin: -0.02rem 0 0 0;
+    padding: 0.02rem;
+  }
+}
+
+.btn-wrap {
+  width: 40%;
+  display: block;
+  border-radius: 0.04rem;
+  background: #de2f50;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  margin: 0.1rem auto;
+  box-shadow: 0px 3px 20px #222;
+  padding: 0 0 0.04rem 0;
+  &.small {
+    padding: 0 0 0.02rem 0;
+    .btn {
+      font-size: 0.14rem;
+      line-height: 0.24rem;
+      margin: -0.02rem 0 0 0;
+      padding: 0.02rem;
+    }
+  }
+  &.radius {
+    border-radius: 0.04rem;
+    .btn {
+      border-radius: 0.04rem;
+    }
+  }
+  &.circle {
+    border-radius: 10em;
+    .btn {
+      border-radius: 10rem;
+    }
+  }
+}
