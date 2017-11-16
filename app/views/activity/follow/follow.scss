@@ -1,0 +1,220 @@
+.page.follow {
+  .content-scrollable {
+    background-color: #474e76;
+    background-image: url("views/activity/follow/follow-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+  }
+  h1.title {
+    width: 70%;
+    margin: 0.3rem auto 0.2rem;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+  .news {
+    margin: 0 0.3rem;
+    height: 0.36rem;
+    background: #7d89d5;
+    border-radius: 0.06rem;
+    line-height: 0.36rem;
+    color: #fff;
+    font-size: 0.12rem;
+    padding-left: 0.56rem;
+    position: relative;
+    .icon {
+      position: absolute;
+      height: 0.20rem;
+      top: 0.08rem;
+      left: 0.15rem;
+      img {
+        display: block;
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+  .roulette {
+    margin: 0.2rem 0.2rem;
+    overflow: hidden;
+    background-image: url("views/activity/follow/roulette-dot.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    .roulette-box {
+      margin: 0.19rem 0.26rem 0.41rem;
+      overflow: hidden;
+    }
+    .roulette-lists {
+      margin: 0.04rem;
+    }
+    .roulette-item-box {
+      margin: 0.04rem;
+      background: #ffb4a8;
+      height: 0.806rem;
+      border-radius: 0.1rem;
+      &.roulette-8 {
+        background-color: #ff9600;
+        .roulette-item-content {
+          background-image: url("views/activity/follow/roulette-start-bg.png");
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 200% 120%;
+          background-color: #ffe400;
+          .txt-start {
+            text-align: center;
+            font-size: 0.26rem;
+            padding: 0.09rem;
+            line-height: 1.1;
+            font-weight: bold;
+            color: #cf2129
+          }
+        }
+      }
+      &.curr {
+        background: #ffcb2e;
+        .roulette-item-content {
+          background: #ffee5f;
+        }
+      }
+    }
+    .roulette-item-content {
+      background: #fff;
+      border-radius: 0.1rem;
+      .img {
+        padding: 0.1rem 0 0.05rem;
+        height: 0.36rem;
+        img {
+          display: block;
+          height: 100%;
+          margin: 0 auto;
+        }
+      }
+      .title {
+        font-size: 0.12rem;
+        color: #df4930;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 0.04rem;
+      }
+    }
+  }
+  .roulette-tips {
+    color: #fff;
+    text-align: center;
+    font-size: 0.12rem;
+    margin: -0.1rem 0.3rem 0;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .txt-l {
+      text-align: left;
+    }
+    .txt-r {
+      text-align: right;
+    }
+    span {
+      color: #ffe400;
+    }
+  }
+  .roulette-btn-wrap {
+    width: 60%;
+    display: block;
+    border-radius: 10em;
+    height: 0.6rem;
+    background: #de2f50;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    margin: 0.1rem auto;
+    box-shadow: 0px 3px 20px #222;
+  }
+  .roulette-btn {
+    width: 100%;
+    display: block;
+    border-radius: 10em;
+    font-size: 0.3rem;
+    line-height: 1.8;
+    background: #fa4e4e;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+  }
+  .follow-tips {
+    color: #fff;
+    font-size: 0.10rem;
+    text-align: center;
+    margin-top: 0.15rem;
+  }
+}
+
+.bind-dialog {
+  border-radius: 0.1rem;
+  .weui-dialog__hd {
+    background: #fa4e4e;
+    color: #fff;
+    padding: 0.8em 1.6em 0.8em;
+  }
+  .weui-dialog__bd {
+    padding: 1em 1em .8em;
+    .pure-control-group {
+      margin-bottom: 0.8em;
+    }
+  }
+  .pure-form input:not([type]) {
+    line-height: 1.5em;
+    box-shadow: none;
+  }
+  .pure-button {
+    color: #000;
+    background: #ffc737;
+    &.disabled {
+      opacity: 0.5;
+    }
+  }
+  .weui-dialog__ft {
+    padding-bottom: 0.25rem;
+    &:after {
+      border-top: none;
+    }
+    a {
+      margin: 0 1em;
+      background: #fa4e4e;
+      border-radius: 1rem;
+      color: #fff;
+      line-height: 2.3;
+    }
+  }
+}
+
+.award-dialog {
+  .img {
+    position: relative;
+    .img-bg {
+      width: 100%;
+      display: block;
+    }
+    .img-prize {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+  .btn-group {
+    position: relative;
+    z-index: 1;
+  }
+  .btn {
+    display: block;
+    width: auto;
+    margin: 0.2rem 0.1rem;
+    border-radius: 1rem;
+    padding: 0.05rem 0.25rem;
+    line-height: 1.6;
+    background: #fa4e4e;
+    color: #fff;
+  }
+}

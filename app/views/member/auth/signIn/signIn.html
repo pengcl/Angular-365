@@ -1,0 +1,35 @@
+<div class="page auth sign-in">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的账户"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="page-hd">
+            <div class="avatar">
+                <img ng-show="userInfo.weiXinData.headimgurl" ng-src="{{userInfo.weiXinData.headimgurl}}">
+                <img ng-show="!userInfo.weiXinData.headimgurl" ng-src="http://app.ljker.com/static/images/avatar.png">
+            </div>
+            <div class="name" ng-bind="userInfo.weiXinData.nickname"></div>
+        </div>
+        <div class="page-bd">
+            <form id="signInForm" name="signInForm" class="pure-form pure-form-stacked">
+                <fieldset>
+                    <div class="input-wrap">
+                        <label><img src="views/member/auth/mobile.png"><span>手机号码</span></label>
+                        <input name="mobile" ng-model="mobile" ng-maxlength="11" ng-pattern="/^[0-9]*$/"
+                               pattern="[0-9]*" ng-minlength="11" placeholder="请输入手机号" required/>
+                    </div>
+                    <div class="input-wrap">
+                        <label><img src="views/member/auth/activeCode.png"><span>验证码</span></label>
+                        <input name="activeCode" ng-model="activeCode" ng-maxlength="4"
+                               ng-minlength="4" ng-pattern="/^[0-9]*$/" pattern="[0-9]*" placeholder="请输入验证码" required/>
+                        <div class="get-code"><a ng-click="getActiveCode($event,mobile);" class="btn circle small"
+                                                 ng-class="{true:'',false:'disabled'}[signInForm.mobile.$valid && activeClass]"
+                                                 href="javascript:;" ng-bind="activeText">获取验证码</a></div>
+                    </div>
+                    <a class="bind btn circle" href="javascript:;" ng-click="signIn(mobile,activeCode)">绑定手机号</a>
+                    <p class="weui-cells__tips"><img src="views/member/auth/tips.png"><span>每月只能解绑一次手机号</span></p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <app-dialog></app-dialog>
+</div>

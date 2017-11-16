@@ -39,8 +39,8 @@ var config = {
         json: 'rev/json/'
     },
     api: {
-        prodApi: "http://m.ljker.com/api",
-        testApi: "http://test.ljker.com/api"
+        prodApi: "http://app.ljker.com/api",
+        testApi: "http://test.yfq.cn/api"
     }
 };
 

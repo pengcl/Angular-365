@@ -1,0 +1,24 @@
+<div ng-class="{true:'',false:'ng-hide'}[isShow]">
+    <div class="weui-mask" ng-class="{true:'weui-animate-fade-in',false:'weui-animate-fade-out'}[isShow]"
+         ng-click="setPickerHide()"></div>
+    <div class="weui-picker" ng-class="{true:'weui-animate-slide-up',false:'weui-animate-slide-down'}[isShow]">
+        <div class="weui-picker__hd">
+            <a href="javascript:;" class="weui-picker__action" ng-click="setPickerHide()">取消</a>
+            <a href="javascript:;" class="weui-picker__action" ng-click="setPickerHide()">确定</a>
+        </div>
+        <div class="weui-picker__bd">
+            <div class="weui-picker__group">
+                <div class="weui-picker__mask" ng-if="showWaitingIcon">
+                    <i class="weui-loading weui-icon_toast"></i>
+                </div>
+                <!--<div class="weui-picker__indicator"></div>-->
+                <div class="weui-picker__content" style="transform: translate3d(0px, 34px, 0px);">
+                    <div class="weui-picker__item" ng-click="setPicker(picker)"
+                         ng-repeat="picker in inputData">
+                        {{picker.value}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

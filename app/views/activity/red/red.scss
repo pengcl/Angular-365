@@ -1,0 +1,79 @@
+.page.red {
+  .content-scrollable {
+    background-image: url(views/activity/red/red-bg.png), linear-gradient(to bottom, #fa4e4e, #e03150 100%);
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  h1.title {
+    width: 70%;
+    margin: 0.6rem auto 0.2rem;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+  .red-form {
+    .input-wrap {
+      width: 70%;
+      border-radius: 1rem;
+      background: #fff;
+      margin: 0 auto;
+      input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.18rem;
+        line-height: 0.24rem;
+        text-align: center;
+        background: none;
+        border: 0;
+        padding: 0.1rem;
+        &::placeholder {
+          color: #999;
+        }
+      }
+    }
+  }
+  .btn-wrap {
+    width: 70%;
+    display: block;
+    border-radius: 10em;
+    height: 0.48rem;
+    background: #ff8400;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    margin: 0.2rem auto;
+    box-shadow: 0px 3px 20px #a61120;
+    .btn {
+      width: 100%;
+      display: block;
+      border-radius: 10em;
+      font-size: 0.2rem;
+      line-height: 0.24rem;
+      padding: 0.1rem;
+      background: #ffe400;
+      font-weight: bold;
+      text-align: center;
+      color: #f64a4e;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+  }
+  .tips {
+    text-align: center;
+    color: #fff;
+    font-size: 0.14rem;
+    margin-top: -0.1rem;
+  }
+  .red-ad {
+    position: fixed;
+    top: 40%;
+    width: 20%;
+    right: 0.1rem;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

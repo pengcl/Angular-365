@@ -1,4 +1,3 @@
-
 app.directive("topNav", [function () {
     return {
         restrict: 'E',
@@ -12,15 +11,6 @@ app.directive("topNav", [function () {
             scope.back = function () {
                 history.back();
             };
-
-            scope.menu = function (open) {
-                scope.$emit('menuEvent', true);
-            };
-
-            scope.getBill = function (mobile) {
-                scope.$emit('navEvent', {navType: 'bill', mobile: mobile});
-            }
-
 
             /*scope.$on('$destroy', function() {
                 console.log("destroy");

@@ -1,0 +1,53 @@
+<div class="page coupon-list">
+    <top-nav nav-item='{"menu":false,"back":true,"share":false,"comment":false,"class":"opacity","title":"优惠券"}'></top-nav>
+    <div class="content-scrollable has-nav has-footer" content-scrollable-scrolled>
+        <div class="weui-cells__title" ng-if="couponList.length > 0">
+            <span ng-if="isUsed==0 && isOverdue==0">未使用的优惠券</span>
+            <span ng-if="isUsed==1 && isOverdue==0">已使用的优惠券</span>
+            <span ng-if="isUsed==0 && isOverdue==1">已过期的优惠券</span>
+        </div>
+
+        <div class="page-loading" ng-show="!couponList"></div>
+
+        <div class="weui-panel weui-panel_access" ng-repeat="coupon in outCoupons" ng-if="outCoupons.length > 0">
+            <div class="weui-panel__bd">
+                <a ui-sref="couponDetail({couponNo:coupon.couponNo})" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img ng-if="isUsed==0 && isOverdue==0" class="weui-media-box__thumb" ng-src="views/member/coupon/unused.png" alt="">
+                        <img ng-if="isUsed==1 && isOverdue==0" class="weui-media-box__thumb" ng-src="views/member/coupon/used.png" alt="">
+                        <img ng-if="isUsed==0 && isOverdue==1" class="weui-media-box__thumb" ng-src="views/member/coupon/overdue.png" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">
+                            <span>{{coupon.couponBatchName}}</span>
+                        </h4>
+                        <p class="weui-media-box__desc">
+                            <span ng-if="coupon.couponBatchName == 'JM'">满100减5，买得越多减得越多</span>
+                            <span ng-if="coupon.couponBatchName == 'MX'">信用卡分期，免息优惠</span>
+                            <!--<span ng-if="coupon.couponBatchName != 'JM' && coupon.couponBatchName != 'MX'">满100减5，买得越多减得越多</span>-->
+                        </p>
+                        <p class="weui-media-box__desc">有效期：<span ng-bind="coupon.validStartTime | date:'yyyy-MM-dd'"></span> 至 <span ng-bind="coupon.validEndTime | date:'yyyy-MM-dd'"></span></p>
+                    </div>
+                    <div class="weui-media-box__ft"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="pageTips" ng-if="couponList.length < 1">
+            <h2>暂无"<span ng-if="isUsed==0 && isOverdue==0">未使用</span><span ng-if="isUsed==1 && isOverdue==0">已使用</span><span ng-if="isUsed=='0' && isOverdue==1">已过期</span>"的优惠券</h2>
+            <p>您可以关注"翼分期商城"公众号、或从官网获得优惠券。</p>
+        </div>
+
+        <load-next input-data="couponList" output-data="outCoupons"></load-next>
+
+        <!--<div class="weui-cells" ng-if="couponList.length > 0">
+            <a class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__bd">
+                    <p style="text-align: center">领取更多优惠券</p>
+                </div>
+            </a>
+        </div>-->
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>

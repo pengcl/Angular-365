@@ -1,0 +1,70 @@
+<div class="page invite">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"邀请好友"}'></top-nav>
+    <div class="content-scrollable">
+        <h1 class="title"><img src="views/activity/invite/invite/title.png"></h1>
+        <div class="invite-btn btn-wrap circle">
+            <a class="btn" href="javascript:;" ng-click="shareMaskShow = true" user-tracker="invite">立即邀请好友</a>
+        </div>
+        <h3 class="title" ng-show="invite.memberList"><ins></ins><span>已成功邀请</span><span ng-bind="invite.memberList.length"></span><span>位好友</span><ins></ins></h3>
+        <h3 class="title" ng-show="!invite.memberList"><span>您还没有成功邀请过好友，快快行动吧！</span></h3>
+        <div class="friends" ng-show="invite.memberList">
+            <ul class="pure-g">
+                <li class="pure-u-3-24" ng-repeat="member in invite.memberList">
+                    <div class="friend-box">
+                        <div class="avatar">
+                            <img src="views/activity/invite/invite/avatar.png">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="friend-more">
+                <a href="javascript:;">查看更多 ></a>
+            </div>
+        </div>
+        <h3 class="title" style="margin-top: 0.2rem"><ins></ins><span>累计已获得邀请奖励</span><ins></ins></h3>
+        <div class="incomes">
+            <div class="pure-g">
+                <div class="label pure-u-1-2">免费流量</div>
+                <div class="value pure-u-1-2"><span ng-bind="invite.giveNumAllCount"></span>M</div>
+                <div class="label pure-u-1-2">转盘抽奖机会</div>
+                <div class="value pure-u-1-2"><span ng-bind="invite.turnTableNum"></span>次</div>
+            </div>
+        </div>
+        <div class="rule-list">
+            <div class="rule-tit"><span>邀请说明</span></div>
+            <dl class="rule-txt">
+                <dt>1</dt>
+                <dd>
+                    <p class="txt">每邀请一位好友关注公众号，您可以获得1M流量，可叠加累计，最多可邀请100人。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>2</dt>
+                <dd>
+                    <p class="txt">同时每邀请一位，可获得一次幸运大转盘的抽奖次数。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>3</dt>
+                <dd>
+                    <p class="txt">当您邀请的好友每次充值任意流量，您可额外获得充值数量的5%奖励，可叠加，不设上限。（如好友充100M流量，您可获得5M流量奖励）。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>4</dt>
+                <dd>
+                    <p class="txt">获得的流量奖励，会存至用户账户的流量余额中，用户可按需提取；所获得的抽奖机会，可到幸运大转盘中查看和使用。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>5</dt>
+                <dd>
+                    <p class="txt">活动最终解释权由微信公众号“365领流量”所有。</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div ng-show="shareMaskShow" ng-include="'views/include/shareMask/shareMask.html'"></div>
+    <app-dialog></app-dialog>
+</div>

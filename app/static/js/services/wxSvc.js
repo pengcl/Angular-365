@@ -1,6 +1,6 @@
 "use strict";
 
-appServices.factory('WxSvc', ['$q', '$http', function ($q, $http) {
+appServices.factory('WxSvc', ['$state', '$q', '$http', '$cookieStore', '$location', function ($state, $q, $http, $cookieStore, $location) {
     var service = {};
 
     service.getWxParameter = function () {
@@ -11,6 +11,24 @@ appServices.factory('WxSvc', ['$q', '$http', function ($q, $http) {
             d.reject(error);
         });
         return d.promise;
+    };
+
+    service.getOpenid = function (callBackUrl) {
+
+        if($location.path() === '/watch'){
+            return false;
+        }
+
+        if ($location.search().openid) {
+            $cookieStore.put('openid', $location.search().openid);
+            return $location.search().openid;
+        }
+
+        if ($cookieStore.get('openid')) {
+            return $cookieStore.get('openid');
+        }
+
+        window.location.href = "http://m.ljker.com/member/auth.ht?platform=365flow&callBackUrl=" + encodeURI(callBackUrl);
     };
 
     return service;

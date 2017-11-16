@@ -1,0 +1,250 @@
+<div class="page follow">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"幸运大转盘"}'></top-nav>
+    <div class="content-scrollable">
+        <h1 class="title"><img src="views/activity/follow/title.png"></h1>
+        <div class="notes">
+            <div class="hd">
+                <img style="width: 0.22rem;margin-right: 0.1rem;display: block" src="views/activity/follow/volume-up.png">
+            </div>
+            <div class="bd" ng-bind="luckyPeoples" ng-show="luckyPeoples"></div>
+            <div class="ft"></div>
+        </div>
+        <div class="roulette">
+            <div class="roulette-box">
+                <ul class="roulette-lists pure-g">
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-0" class="roulette-0 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[0].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[0].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-1" class="roulette-1 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[1].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[1].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-2" class="roulette-2 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[2].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[2].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-7" class="roulette-7 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[7].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[7].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-8" class="roulette-8 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="txt-start" ng-click="start()" user-tracker="lottery">立即<br>抽奖</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-3" class="roulette-3 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[3].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[3].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-6" class="roulette-6 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[6].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[6].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-5" class="roulette-5 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[5].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[5].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-4" class="roulette-4 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{roulettes[4].productImgUrl}}">
+                                </div>
+                                <div class="title" ng-bind="roulettes[4].productname"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="roulette-tips pure-g">
+            <div class="txt-l pure-u-1-2">剩余转盘机会：<span ng-bind="userInfo.turntableNum"></span>次</div>
+            <div class="txt-r pure-u-1-2"><a ui-sref="invite">邀请好友获取更多次数 ></a></div>
+        </div>
+
+        <div class="rule-list">
+            <div class="rule-tit"><span>转盘说明</span></div>
+            <dl class="rule-txt">
+                <dt>1</dt>
+                <dd><p class="tit">每周自动获赠3次转盘机会，每周赠送的转盘次数不积累。</p></dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>2</dt>
+                <dd>
+                    <p class="tit">每成功邀请一位好友关注可获赠3次转盘机会。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>3</dt>
+                <dd>
+                    <p class="tit">活动最终解释权由365领流量拥有。</p>
+                </dd>
+            </dl>
+        </div>
+
+        <div ng-include="'views/include/profit/profit.html'"></div>
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>
+
+<div id="overlayAward" class="overlay-template" ng-class="{true:'overlay-open',false:''}[award.overlay]">
+    <div class="overlay-hook">
+        <div class="overlay">
+            <div class="wrapper-heading">
+                <!--<div class="bind-dialog weui-dialog" ng-show="award.bind">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">绑定手机，领取奖品</strong></div>
+                    <div class="weui-dialog__bd">
+                        <form id="signInForm" name="signInForm" class="pure-form pure-form-aligned">
+                            <div class="pure-control-group">
+                                <div class="pure-g">
+                                    <input class="pure-u-1" name="mobile" ng-model="mobile" ng-maxlength="11" ng-pattern="/^[0-9]*$/"
+                                           pattern="[0-9]*" ng-minlength="11" placeholder="请输入手机号" required/>
+                                </div>
+                            </div>
+                            <div class="pure-control-group">
+                                <div class="pure-g">
+                                    <div class="pure-u-3-5" style="text-align: left">
+                                        <input class="pure-u-23-24" name="activeCode" ng-model="activeCode" ng-maxlength="4"
+                                               ng-minlength="4" ng-pattern="/^[0-9]*$/" pattern="[0-9]*" placeholder="请输入验证码" required/>
+                                    </div>
+                                    <button type="submit" class="pure-u-2-5 pure-button" ng-click="getActiveCode($event,mobile);"
+                                            ng-class="{true:'',false:'disabled'}[signInForm.mobile.$valid && activeClass]"
+                                            href="javascript:;" ng-bind="activeText" user-tracker="getActiveCode">获取验证码</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary"
+                           ng-click="signIn(mobile,activeCode)" user-tracker="receiver">立即领取</a>
+                    </div>
+                </div>-->
+                <div class="award-dialog" ng-show="award.award">
+                    <div class="img">
+                        <img class="img-bg" src="views/activity/follow/awards-bg.png">
+                        <img class="img-prize" ng-src="http://www.yfq.cn:8899/fileserver/medias/{{prize.productImgUrl}}">
+                    </div>
+                    <div class="txt" style="color: #fff;margin-top: -0.95rem">
+                        <p ng-show="prize.producttype == 'flow'" style="color: #ffdf4e">恭喜您抽中了{{prize.productname}}！已放入您的流量余额中，可到个人中心进行兑换。</p>
+                        <p ng-show="prize.producttype == 'flowCoupon'" style="color: #ffdf4e">恭喜您抽中了{{prize.productname}}优惠券！已放入您的卡包中，可进入个人中心卡包中查看。</p>
+                        <p ng-show="prize.producttype == 'mobileCoupon'" style="color: #ffdf4e">恭喜您抽中了{{prize.productname}}优惠券！已放入您的卡包中，可进入个人中心卡包中查看。</p>
+                        <p ng-show="prize.producttype == 'financialProducts'" style="color: #ffdf4e">恭喜您抽中了一份{{prize.productname}}！机会难得，赶紧去领取吧！</p>
+                        <p ng-show="prize.producttype == 'videoCard'" style="color: #ffdf4e">恭喜您抽中了一张{{prize.productname}}！机会难得，赶紧去领取吧！</p>
+                    </div>
+
+                    <!-- 抽到流量 -->
+                    <div ng-show="prize.producttype == 'flow'" class="btn-group pure-g">
+                        <div class="pure-u-1-2">
+                            <a class="btn" href="javascript:;" ng-click="success('http://app.ljker.com/member/exchange')" user-tracker="flow">去兑换</a>
+                        </div>
+                        <div class="pure-u-1-2">
+                            <!-- 还有抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes > 0" class="btn" href="javascript:;" ng-click="continue()" user-tracker="continue">继续抽奖</a>
+                            <!-- 无抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                        </div>
+                    </div>
+
+                    <!-- 抽到流量优惠券 -->
+                    <div ng-show="prize.producttype == 'flowCoupon'" class="btn-group pure-g">
+                        <div class="pure-u-1-2">
+                            <a class="btn" href="javascript:;" ng-click="success()" user-tracker="flowCoupon">去兑换</a>
+                        </div>
+                        <div class="pure-u-1-2">
+                            <!-- 还有抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes > 0" class="btn" href="javascript:;" ng-click="continue()" user-tracker="continue">继续抽奖</a>
+                            <!-- 无抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                        </div>
+                    </div>
+
+                    <!-- 抽到手机优惠券 -->
+                    <div ng-show="prize.producttype == 'mobileCoupon'" class="btn-group pure-g">
+                        <div class="pure-u-1-2">
+                            <a class="btn" href="javascript:;" ng-click="success('http://app.yfq.cn')" user-tracker="mobileCoupon">去兑换</a>
+                        </div>
+                        <div class="pure-u-1-2">
+                            <!-- 还有抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes > 0" class="btn" href="javascript:;" ng-click="continue()" user-tracker="continue">继续抽奖</a>
+                            <!-- 无抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                        </div>
+                    </div>
+
+                    <!-- 抽到理财产品包 -->
+                    <div ng-show="prize.producttype == 'financialProducts'" class="btn-group pure-g">
+                        <div class="pure-u-1-2">
+                            <a class="btn" href="javascript:;" ng-click="success('https://h5.mizlicai.com/#/share-register')" user-tracker="financialProducts">去领取</a>
+                        </div>
+                        <div class="pure-u-1-2">
+                            <!-- 还有抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes > 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="giveUp">忍痛放弃</a>
+                            <!-- 无抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                        </div>
+                    </div>
+
+                    <!-- 抽到影视会员卡 -->
+                    <div ng-show="prize.producttype == 'videoCard'" class="btn-group pure-g">
+                        <div class="pure-u-1-2">
+                            <a class="btn" href="javascript:;" ng-click="success()" user-tracker="videoCard">去领取</a>
+                        </div>
+                        <div class="pure-u-1-2">
+                            <!-- 还有抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes > 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="giveUp">忍痛放弃</a>
+                            <!-- 无抽奖次数 -->
+                            <a ng-show="lottery.result.remainingTimes <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

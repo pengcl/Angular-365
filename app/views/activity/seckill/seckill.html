@@ -1,0 +1,141 @@
+<div class="page seckill">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"每周秒杀"}'></top-nav>
+    <div class="content-scrollable">
+        <h1 class="title"><img src="views/activity/seckill/title.png"></h1>
+        <div class="notes">
+            <div class="hd">
+                <img style="width: 0.22rem;margin-right: 0.1rem;display: block" src="views/activity/follow/volume-up.png">
+            </div>
+            <div class="bd" ng-bind="luckyPeoples">小小明 成功抢到 1元1G流量包！</div>
+            <div class="ft"><span ng-bind="luckyTime"></span>秒前</div>
+        </div>
+
+        <div class="product">
+            <div class="product-box">
+                <div class="hd">
+                    <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{seckills.recent.mainImageUrl}}">
+                </div>
+                <div class="bd">
+                    <div class="tit" ng-bind="seckills.recent.activity_name"></div>
+                    <div class="old-price">原价：¥<span ng-bind="seckills.recent.old_price"></span></div>
+                    <div class="new-price pure-g">
+                        <div class="price pure-u-2-3"><span>限时抢购：</span><em>￥</em><em ng-bind="seckills.recent.price"></em></div>
+                        <div class="store pure-u-1-3"><span>剩余：</span><span style="color: #cf2129" ng-bind="seckills.recent.product_num"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-overlay" ng-show="seckills.recent.product_num <= 0 || !seckills.falg">
+                <div class="txt" ng-show="seckills.recent.product_num <= 0">已抢光</div>
+                <div class="txt countdown" ng-show="!seckills.falg" style="white-space: nowrap"><div class="label">距秒杀开始还有：</div><timer ng-if="seckills.recent.start_time.time" end-time="{{seckills.recent.start_time.time}}"></timer></div>
+            </div>
+        </div>
+        <div class="countdown" ng-show="seckills.falg && payState != 1"><div class="label">结束倒计时：</div><timer ng-if="seckills.recent.end_time.time" end-time="{{seckills.recent.end_time.time}}"></timer></div>
+        <div class="countdown" ng-show="seckills.falg && payState == 1">您已经买到了，快邀请好友一起来参加吧！</div>
+        <div class="countdown" ng-show="!seckills.falg">秒杀还没有，提前预约提醒参加秒杀！</div>
+        <div class="btn-wrap circle">
+            <div class="btn" ng-show="seckills.falg && payState != 1" ng-click="buy()" user-tracker="buy">立即抢购</div>
+            <div class="btn" ng-show="seckills.falg && payState == 1" ui-sref="inviteCode" user-tracker="invite">邀请好友</div>
+            <div class="btn" ng-show="!seckills.falg" ng-click="smsOverlay = true" user-tracker="subscribe">预约提醒</div>
+        </div>
+
+        <div class="next-panel" ng-show="seckills.recent.product_num <= 0 || seckills.falg">
+            <h1 class="title" style="margin: 0.4rem auto 0.05rem auto;width: 43%"><img src="views/activity/seckill/title2.png"></h1>
+            <ul class="next-lists pure-g">
+                <li ng-repeat="seckill in seckills.proList" class="next-item pure-u-1-4">
+                    <div class="dot"><ins></ins></div>
+                    <div class="card checked">
+                        <div class="hd" ng-bind="seckill.activity_name"></div>
+                        <div class="bd">
+                            <div class="img">
+                                <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{seckill.mainImageUrl}}">
+                            </div>
+                        </div>
+                        <div class="ft" ng-bind="seckill.start_time.time | date:'MM月dd日'"></div>
+                        <!--<div class="card-overlay">
+                            <img src="views/activity/sign/checked.png">
+                        </div>-->
+                    </div>
+                </li>
+            </ul>
+
+            <div class="btn-wrap circle">
+                <div class="btn">下期预约提醒</div>
+            </div>
+        </div>
+
+        <div class="rule-list">
+            <div class="rule-tit"><span>活动规则</span></div>
+            <dl class="rule-txt">
+                <dt>1</dt>
+                <dd><p class="txt">秒杀活动时间为每周三。</p></dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>2</dt>
+                <dd>
+                    <p class="txt">秒杀活动的产品为限量供应，先到先得。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>3</dt>
+                <dd>
+                    <p class="txt">每位用户只可购买1份。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>4</dt>
+                <dd>
+                    <p class="txt">秒杀产品支付时限为30分钟，超时不支付，产品将重新放回秒杀场，供其他用户进行秒杀。</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>5</dt>
+                <dd>
+                    <p class="txt">秒杀活动最终解释权由微信公众号“365领流量”所有。</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="red-ad">
+        <img src="views/activity/red/ad.png">
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>
+
+<div id="overlayAward" class="overlay-template" ng-class="{true:'overlay-open',false:''}[smsOverlay]">
+    <div class="overlay-hook">
+        <div class="overlay">
+            <div class="wrapper-heading">
+                <div class="bind-dialog weui-dialog" ng-show="smsOverlay">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">绑定手机，领取奖品</strong></div>
+                    <div class="weui-dialog__bd">
+                        <form id="signInForm" name="signInForm" class="pure-form pure-form-aligned">
+                            <div class="pure-control-group">
+                                <div class="pure-g">
+                                    <input class="pure-u-1" name="mobile" ng-model="mobile" ng-maxlength="11" ng-pattern="/^[0-9]*$/"
+                                           pattern="[0-9]*" ng-minlength="11" placeholder="请输入手机号" required/>
+                                </div>
+                            </div>
+                            <div class="pure-control-group">
+                                <div class="pure-g">
+                                    <div class="pure-u-3-5" style="text-align: left">
+                                        <input class="pure-u-23-24" name="activeCode" ng-model="activeCode" ng-maxlength="4"
+                                               ng-minlength="4" ng-pattern="/^[0-9]*$/" pattern="[0-9]*" placeholder="请输入验证码" required/>
+                                    </div>
+                                    <button type="submit" class="pure-u-2-5 pure-button" ng-click="getActiveCode($event,mobile);"
+                                            ng-class="{true:'',false:'disabled'}[signInForm.mobile.$valid && activeClass]"
+                                            href="javascript:;" ng-bind="activeText">获取验证码</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary"
+                           ng-click="remainSms(mobile,activeCode,seckills.recent.product_id)">预约提醒</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

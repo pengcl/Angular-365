@@ -1,0 +1,24 @@
+<div class="page code">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"口令红包"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="page-hd">
+            <div class="avatar">
+                <img ng-if="userInfo.weiXinData.headimgurl" ng-src="{{userInfo.weiXinData.headimgurl}}">
+                <img ng-if="!userInfo.weiXinData.headimgurl" src="static/images/avatar.png">
+            </div>
+            <div class="name">好友 <span ng-bind="userInfo.weiXinData.nickname"></span> 喊你一起来领免费流量还有各种抽奖秒杀机会，快来抢奖品吧！</div>
+        </div>
+        <div class="page-bd">
+            <div class="qr-code">
+                <img src="views/activity/invite/code/qr-code.png">
+                <div class="qr-code-img">
+                    <img ng-src="{{userInfo.qrCodeUrl}}">
+                </div>
+            </div>
+            <div class="qr-label">长按识别二维码免费领流量、抢好礼！</div>
+            <p class="qr-tips">通过活动可领全国通用免费流量，并有机会抽中影视会员、手机、流量等各种优惠券。别犹豫了，赶快来吧！</p>
+        </div>
+    </div>
+    <app-dialog></app-dialog>
+</div>

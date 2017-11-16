@@ -1,0 +1,68 @@
+.page.code {
+  .content-scrollable {
+    background-image: url(views/activity/invite/code/code-bg.png), linear-gradient(to bottom, #545c8b, #30375d 100%);
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  .page-hd {
+    background: transparent;
+    .avatar {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 10rem;
+      margin: 0.1rem auto;
+      background: #afcffe;
+      img {
+        width: 0.71rem;
+        height: 0.71rem;
+        border-radius: 10rem;
+        margin: 0.02rem;
+      }
+    }
+    .name {
+      text-align: center;
+      font-size: 0.16rem;
+      color: #fff;
+      padding: 0 0.2rem;
+      line-height: 0.2rem;
+    }
+  }
+  .page-bd {
+    overflow: hidden;
+    .qr-code {
+      margin: 0 0.1rem;
+      position: relative;
+      img {
+        display: block;
+        width: 100%;
+      }
+      .qr-code-img {
+        position: absolute;
+        width: 48%;
+        left: 50%;
+        transform: translate3d(-52%, 0, 0);
+        bottom: 0.3rem;
+      }
+    }
+    .qr-label {
+      font-size: 0.16rem;
+      color: #fff;
+      text-align: center;
+      margin-top: 0.05rem;
+    }
+    .qr-tips {
+      text-align: center;
+      font-size: 0.13rem;
+      color: #ffe400;
+      margin-top: 0.12rem;
+    }
+  }
+  h1.title {
+    width: 70%;
+    margin: 0.6rem auto 0.2rem;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

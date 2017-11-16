@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  position: relative;
+  &:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 1px;
+    left: 0;
+    border-top: 1px solid #e5e5e5;
+    transform: scaleY(0.5);
+  }
+  tbody {
+    position: relative;
+    &:before {
+      content: " ";
+      display: block;
+      width: 100%;
+      position: absolute;
+      height: 1px;
+      left: 0;
+      border-top: 1px solid #e5e5e5;
+      transform: scaleY(0.5);
+    }
+  }
+  td,th {
+    text-align: center;
+    padding: 0.1rem;
+  }
+  th {
+    font-size: 0.15rem;
+  }
+  td {
+    font-size: 0.14rem;
+  }
+}

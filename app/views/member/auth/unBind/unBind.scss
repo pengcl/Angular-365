@@ -1,0 +1,12 @@
+.page.auth {
+  form {
+    .input-wrap.input-mobile {
+      label {
+        color: #3486ff;
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div class="page home">
+    <top-nav nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的账户"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="page-hd">
+            <div class="avatar">
+                <img ng-show="userInfo.weiXinData.headimgurl" ng-src="{{userInfo.weiXinData.headimgurl}}">
+                <img ng-show="!userInfo.weiXinData.headimgurl" ng-src="http://app.ljker.com/static/images/avatar.png">
+            </div>
+            <div class="name" ng-bind="userInfo.weiXinData.nickname"></div>
+        </div>
+        <div class="page-bd">
+            <div class="weui-cells">
+
+                <a class="weui-cell weui-cell_access" ui-sref="flow">
+                    <div class="weui-cell__hd"><img src="views/member/home/flow.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p>流量余额</p>
+                    </div>
+                    <div class="weui-cell__ft"><span ng-bind="userStatus.giveFlowNum"></span>M</div>
+                </a>
+                <a class="weui-cell weui-cell_access" ui-sref="record">
+                    <div class="weui-cell__hd"><img src="views/member/home/record.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p>充值记录</p>
+                    </div>
+                    <div class="weui-cell__ft"></div>
+                </a>
+                <a class="weui-cell weui-cell_access" ui-sref="orderList({orderStatus:''})">
+                    <div class="weui-cell__hd"><img src="views/member/home/order.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p>我的订单</p>
+                    </div>
+                    <div class="weui-cell__ft"><span ng-bind="userStatus.orderSize"></span></div>
+                </a>
+                <a class="weui-cell weui-cell_access" ui-sref="couponHome">
+                    <div class="weui-cell__hd"><img src="views/member/home/coupon.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p>我的卡券</p>
+                    </div>
+                    <div class="weui-cell__ft"><span ng-bind="userStatus.couponsSize"></span></div>
+                </a>
+                <a class="weui-cell weui-cell_access" ui-sref="unBind">
+                    <div class="weui-cell__hd"><img src="views/member/home/bind.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p>手机绑定</p>
+                    </div>
+                    <div class="weui-cell__ft"><span ng-bind="userInfo.mobile"></span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>

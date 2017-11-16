@@ -1,0 +1,60 @@
+<div class="page record">
+    <top-nav nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的账户"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="page-hd">
+            <div class="status pure-g">
+                <div class="pure-u-1-2">
+                    <div class="num">0</div>
+                    <div class="label">累计充值(次)</div>
+                </div>
+                <div class="pure-u-1-2">
+                    <div class="num">0</div>
+                    <div class="label">累计消费(元)</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-bd">
+            <div class="weui-cells__title">流量充值明细</div>
+            <div class="no-data" ng-show="outputData.length < 1">
+                <img src="static/images/document.png">
+                <div class="info">您还没有任何记录，快去<a href="http://app.yfq.cn/flow/list">充值</a>吧!</div>
+            </div>
+                <!--<div class="pageTips" ng-if="outputData.length < 1">
+                    <h2>暂无
+                        "
+                        流量充值订单
+                        "
+                        的订单
+                    </h2>
+                    <p>立刻去 <a href="http://app.yfq.cn/phone/lj/A/phones?gh=member">买手机</a>，<a href="http://app.yfq.cn/flow/list?gh=member">充流量</a></p>
+                </div>-->
+                <div class="page-loading" ng-show="!outputData"></div>
+                <order-list-item ng-show="!!outputData" ng-repeat="orderListItem in outputData" order-list-item="orderListItem"></order-list-item>
+                <load-next input-data="orderList" output-data="outputData" input-data-tag="inputDataTag" page-size="5"></load-next>
+
+            <!--<table ng-show="userFlowLogList.length > 0">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>来源</th>
+                    <th>流量数</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="userFlowLog in userFlowLogList">
+                    <td ng-bind="userFlowLog.createtime.time | date:'yyyy-MM-dd'">2017-11-03</td>
+                    <td>
+                        <span ng-show="userFlowLog.givetype == 'recharge'">流量兑换</span>
+                        <span ng-show="userFlowLog.givetype == 'sign'">签到赠送</span>
+                        <span ng-show="userFlowLog.givetype == 'signCountGive'">累计签到赠送</span>
+                        <span ng-show="userFlowLog.givetype == 'turnTable'">转盘抽奖</span>
+                        <span ng-show="userFlowLog.givetype == 'recommend'">推荐奖励</span>
+                    </td>
+                    <td><span ng-bind="userFlowLog.giveflownum"></span>M</td>
+                </tr>
+                </tbody>
+            </table>-->
+        </div>
+    </div>
+    <app-dialog></app-dialog>
+</div>

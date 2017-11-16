@@ -1,0 +1,110 @@
+<div class="page sign">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"每日签到"}'></top-nav>
+    <div class="content-scrollable">
+        <h1 class="title"><img src="views/activity/sign/title.png"></h1>
+        <div class="coupon">
+            <img src="views/activity/sign/coupon.png">
+        </div>
+        <div class="tips">已累计签到：<em ng-bind="signInfo.signDaysCount"></em>次<span ng-show="signInfo.isSign == 1">，并免费获得<em>1</em>次转盘机会</span></div>
+        <div class="btn-wrap circle" ng-class="{true:'checked',false:''}[signInfo.isSign == 1]">
+            <a class="btn" href="javascript:;" ng-click="sign()" ng-show="signInfo.isSign != 1" user-tracker="sign">立即领取</a>
+            <a class="btn" href="javascript:;" ng-click="sign()" ng-show="signInfo.isSign == 1">本周已签到</a>
+        </div>
+        <div class="sign-panel">
+            <ul class="sign-lists pure-g">
+                <li class="sign-item pure-u-1-4">
+                    <div class="card checked">
+                        <div class="hd">2次转盘机会</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/activity/sign/item-1.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到3次</div>
+                        <div class="card-overlay" ng-show="signInfo.threeDay.isReceive == '1'">
+                            <img src="views/activity/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap circle small"
+                         ng-class="{true:'checked',false:''}[signInfo.threeDay.isReceive == '1']"
+                         ng-show="signInfo.signDaysCount >= 3">
+                        <a class="btn" href="javascript:;" ng-click="getPrize(signInfo.threeDay,'threeDay')">
+                            <span ng-show="signInfo.threeDay.isReceive == '1'">已领取</span>
+                            <span ng-show="signInfo.threeDay.isReceive == '0'" user-tracker="receiver">立即领取</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="sign-item pure-u-1-4">
+                    <div class="card">
+                        <div class="hd">3次转盘机会</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/activity/sign/item-1.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到7次</div>
+                        <div class="card-overlay" ng-show="signInfo.sevenDay.isReceive == '1'">
+                            <img src="views/activity/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap circle small"
+                         ng-class="{true:'checked',false:''}[signInfo.sevenDay.isReceive == '1']"
+                         ng-show="signInfo.signDaysCount >= 7">
+                        <a class="btn" href="javascript:;" ng-click="getPrize(signInfo.sevenDay,'sevenDay')">
+                            <span ng-show="signInfo.sevenDay.isReceive == '1'">已领取</span>
+                            <span ng-show="signInfo.sevenDay.isReceive == '0'" user-tracker="receiver">立即领取</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="sign-item pure-u-1-4">
+                    <div class="card">
+                        <div class="hd">100M流量</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/activity/sign/item-3.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到10次</div>
+                        <div class="card-overlay" ng-show="signInfo.tenDay.isReceive == '1'">
+                            <img src="views/activity/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap small circle"
+                         ng-class="{true:'checked',false:''}[signInfo.tenDay.isReceive == '1']"
+                         ng-show="signInfo.signDaysCount >= 10">
+                        <a class="btn" href="javascript:;" ng-click="getPrize(signInfo.tenDay,'tenDay')">
+                            <span ng-show="signInfo.tenDay.isReceive == '1'">已领取</span>
+                            <span ng-show="signInfo.tenDay.isReceive == '0'" user-tracker="receiver">立即领取</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="sign-item pure-u-1-4">
+                    <div class="card">
+                        <div class="hd">50元购机券</div>
+                        <div class="bd">
+                            <div class="img">
+                                <img src="views/activity/sign/item-4.png">
+                            </div>
+                        </div>
+                        <div class="ft">累计签到20次</div>
+                        <div class="card-overlay" ng-show="signInfo.twentyDay.isReceive == '1'">
+                            <img src="views/activity/sign/checked.png">
+                        </div>
+                    </div>
+                    <div class="btn-wrap small circle"
+                         ng-class="{true:'checked',false:''}[signInfo.twentyDay.isReceive == '1']"
+                         ng-show="signInfo.signDaysCount >= 20">
+                        <a class="btn" href="javascript:;" ng-click="getPrize(signInfo.twentyDay,'twentyDay')">
+                            <span ng-show="signInfo.twentyDay.isReceive == '1'">已领取</span>
+                            <span ng-show="signInfo.twentyDay.isReceive == '0'" user-tracker="receiver">立即领取</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div ng-include="'views/include/profit/profit.html'"></div>
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>

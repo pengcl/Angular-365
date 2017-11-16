@@ -1,0 +1,14 @@
+.weui-picker__mask {
+  i {
+    position: absolute;
+    margin: 0 !important;
+    top: 50%;
+    left: 50%;
+    margin-left: -0.19rem !important;
+    margin-top: -0.19rem !important;
+  }
+}
+
+.weui-picker__group {
+  overflow-y: scroll;
+}

@@ -1,0 +1,20 @@
+.no-data {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 100%;
+  img {
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+  }
+  .info {
+    text-align: center;
+    font-size: 0.14rem;
+    color: #999;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 0.1rem;
+  }
+}

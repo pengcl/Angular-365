@@ -1,0 +1,45 @@
+<div class="page exchange">
+    <top-nav nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"","title":"流量兑换"}'></top-nav>
+    <div class="content-scrollable has-footer">
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>流量余额</p>
+                </div>
+                <div class="weui-cell__ft"><span ng-bind=userStatus.giveFlowNum></span>M</div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access ng-hide" ui-sref="unBind">
+                <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
+                <div class="weui-cell__bd">
+                    <p ng-bind=userInfo.mobile></p>
+                </div>
+                <div class="weui-cell__ft">解绑</div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="javascript:;" ng-click="setPickerShow()">
+                <div class="weui-cell__bd">
+                    <p>兑换流量</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <div ng-show="userStatus.giveFlowNum - product.value >= 0"><span ng-bind="product.value"></span>M</div>
+                    <div ng-show="userStatus.giveFlowNum - product.value < 0">流量余额不足，无法兑换</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="weui-cells__tips" style="text-align: right">满30M才能兑换，每月只能兑换两次</div>
+
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" ng-class="{true:'disabled',false:''}[userStatus.giveFlowNum - product.value < 0]" ng-click="exchange(product)"
+               href="javascript:;">
+                <div class="weui-cell__bd">
+                    <p style="text-align: center">提交</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-picker input-data="inputPickerData" output-data="outputPickerData" is-show="isPickerShow"></app-picker>
+    <app-dialog></app-dialog>
+</div>

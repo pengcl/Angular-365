@@ -1,0 +1,103 @@
+.page.invite {
+  .content-scrollable {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #31375d;
+  }
+  h1.title {
+    width: 100%;
+    margin: 0;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+  h2.title {
+    width: 50%;
+    margin: 0.4rem auto;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+  h3.title {
+    text-align: center;
+    margin-top: 0.4rem;
+    ins, span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    ins {
+      margin: 0 0.07rem;
+      line-height: 0.2rem;
+      height: 0.2rem;
+      width: 0.2rem;
+      background-position: center center;
+      background-size: 50% 50%;
+      background-repeat: no-repeat;
+      &:first-child {
+        background-image: url("views/activity/invite/invite/title-lt.png");
+      }
+      &:last-child {
+        background-image: url("views/activity/invite/invite/title-rt.png");
+      }
+    }
+    span {
+      font-size: 0.16rem;
+      color: #ffe400;
+      height: 0.2rem;
+      line-height: 0.2rem;
+    }
+  }
+  .invite-btn {
+    width: 50%;
+    margin-top: 0.25rem;
+    box-shadow: 0 9px 18px #2a3055;
+    .btn {
+      letter-spacing: 0.02rem;
+      font-size: 0.2rem;
+    }
+  }
+
+  .friends {
+    margin: 0.1rem 0.15rem;
+    .friend-box {
+      margin: 0.05rem;
+      .avatar {
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+    .friend-more {
+      text-align: right;
+      font-size: 0.14rem;
+      text-decoration: none;
+      margin-top: 0.05rem;
+      a {
+        color: #fff;
+      }
+    }
+  }
+  .incomes {
+    margin: 0.1rem 0.2rem 0.1rem;
+    font-size: 0.14rem;
+    color: #fff;
+    line-height: 0.28rem;
+    .label {
+      text-align: left;
+    }
+    .value {
+      text-align: right;
+      color: #ffe400;
+    }
+  }
+  .rule-list {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    .rule-txt dt {
+      margin-top: 0;
+    }
+  }
+}

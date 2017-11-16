@@ -1,0 +1,35 @@
+<div class="page red">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"口令红包"}'></top-nav>
+    <div class="content-scrollable">
+        <h1 class="title"><img src="views/activity/red/title.png"></h1>
+        <div class="red-form">
+            <div class="input-wrap">
+                <input ng-model="red.code" placeholder="请输入兑换口令">
+            </div>
+            <div class="btn-wrap">
+                <a class="btn" href="javascript:;" ng-click="overlayOpen = true">立即领取</a>
+            </div>
+            <div class="tips">不知道口令？戳这里</div>
+        </div>
+        <div class="rule-list">
+            <div class="rule-tit"><span>活动规则</span></div>
+            <dl class="rule-txt">
+                <dt>1</dt>
+                <dd><p class="tit"><b>什么是口令红包？</b></p>
+                    <p class="txt">您在推文里获取红包口令后，在此页面输入口令，即可领取红包流量。</p></dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>2</dt>
+                <dd>
+                    <p class="tit"><b>什么是口令红包？</b></p>
+                    <p class="txt">关注“365领流量”，点击「领流量」，点击「口令红包」，输入口令即可。</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="red-ad">
+        <img src="views/red/ad.png">
+    </div>
+    <app-dialog></app-dialog>
+</div>

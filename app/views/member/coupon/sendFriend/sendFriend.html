@@ -1,0 +1,50 @@
+<div class="page bill">
+    <top-nav
+            nav-item='{"menu":false,"back":true,"share":false,"comment":true,"class":"","title":"赠送优惠券"}'></top-nav>
+    <div class="content-scrollable has-nav has-footer">
+        <form id="sendForm" name="sendForm">
+            <!--<div class="weui-cells__title">请录入您要赠送朋友的信息</div>-->
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell" ng-class="{'weui-cell_success':sendForm.mobile.$valid,'weui-cell_warn':sendForm.mobile.$invalid && !sendForm.mobile.$pristine,'':sendForm.mobile.$pristine}">
+                    <div class="weui-cell__hd"><label for="mobile" class="weui-label">手机号</label></div>
+                    <div class="weui-cell__bd">
+                        <input name="mobile" id="mobile" ng-model="send.mobile" class="weui-input" ng-blur="writeMobile();"
+                               placeholder="朋友的手机号" type="text" ng-minlength="11" maxlength="11" required>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <i class="" ng-class="{'weui-icon-success':sendForm.mobile.$valid,'weui-icon-warn':sendForm.mobile.$invalid && !sendForm.mobile.$pristine,'':sendForm.mobile.$pristine}"></i>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="couponBatchName" class="weui-label">优惠券</label></div>
+                    <div class="weui-cell__bd">
+                        <input name="couponBatchName" id="couponBatchName" value="{{coupon.couponBatchName}}" class="weui-input" type="text" readonly>
+                    </div>
+                    <div class="weui-cell__ft" style="font-size: inherit">
+                        x1
+                    </div>
+                </div>
+                <!--<div class="weui-cell" ng-class="{'weui-cell_success':sendForm.cardNo.$valid,'weui-cell_warn':sendForm.cardNo.$invalid && !sendForm.cardNo.$pristine,'':sendForm.cardNo.$pristine}">
+                    <div class="weui-cell__hd"><label for="cardNo" class="weui-label">卡号</label></div>
+                    <div class="weui-cell__bd">
+                        <input name="cardNo" id="cardNo" ng-model="send.couponNos" class="weui-input" placeholder="请输入持卡人卡号" type="number" required>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <i class="" ng-class="{'weui-icon-success':sendForm.cardNo.$valid,'weui-icon-warn':sendForm.cardNo.$invalid && !sendForm.cardNo.$pristine,'':sendForm.cardNo.$pristine}"></i>
+                    </div>
+                </div>-->
+            </div>
+            <div class="weui-cells">
+                <a class="weui-cell weui-cell_access"
+                   ng-click="send(sendForm.$valid,couponNo,appAuth.receiverMobile,send.mobile)"
+                   ng-class="{true:'disabled',false:''}[sendForm.$invalid]">
+                    <div class="weui-cell__bd">
+                        <p style="text-align: center">赠送</p>
+                    </div>
+                </a>
+            </div>
+        </form>
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>

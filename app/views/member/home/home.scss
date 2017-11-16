@@ -1,0 +1,23 @@
+.page.home {
+  font-size: 0.12rem;
+  .page-hd {
+    .avatar {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 10rem;
+      margin: 0.1rem auto;
+      background: #afcffe;
+      img {
+        width: 0.71rem;
+        height: 0.71rem;
+        border-radius: 10rem;
+        margin: 0.02rem;
+      }
+    }
+    .name {
+      text-align: center;
+      font-size: 0.18rem;
+      color: #fff;
+    }
+  }
+}

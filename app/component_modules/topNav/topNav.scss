@@ -28,6 +28,13 @@ nav.nav {
     &.right {
       left: auto;
       right: 0;
+      .nav-item {
+        img {
+          height: 0.3rem;
+          width: auto;
+          margin: 0.075rem auto auto auto;
+        }
+      }
     }
   }
   .nav-item {
@@ -44,6 +51,12 @@ nav.nav {
     [class*=" icon-"] {
       line-height: 0.3rem;
       vertical-align: middle;
+    }
+    img {
+      height: 0.3rem;
+      width: auto;
+      margin-top: 0.075rem;
+      margin-left: 0.075rem;
     }
   }
   &.black {
@@ -91,7 +104,7 @@ nav.nav {
     text-overflow: ellipsis;
     text-transform: uppercase;
     top: 50%;
-    transform: translate3d(0px, -40%, 0px);
+    transform: translate3d(0px, -50%, 0px);
     white-space: nowrap;
     width: auto;
     .subtext-page {

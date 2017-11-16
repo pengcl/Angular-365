@@ -10,6 +10,9 @@
   overflow: hidden;
   .hd {
     padding-top: 0.03rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .bd {
     height: 0.6rem;
@@ -19,10 +22,12 @@
       width: 80%;
       top: 50%;
       left: 50%;
+      height: 0.5rem;
       transform: translate3d(-50%, -50%, 0);
+      text-align: center;
       img {
-        width: 100%;
-        display: block;
+        height: 100%;
+        display: inline-block;
       }
     }
   }
@@ -39,7 +44,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    display: none;
     img {
       width: 60%;
       left: 50%;

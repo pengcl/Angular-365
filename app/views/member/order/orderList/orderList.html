@@ -1,0 +1,45 @@
+<div class="page order">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的订单"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                <a ui-sref="orderList({orderStatus:''})" class="weui-navbar__item"
+                   ng-class="{true:'weui-bar__item_on',false:''}[orderStatus == '']">
+                    全部
+                </a>
+                <a ui-sref="orderList({orderStatus:'0'})" class="weui-navbar__item"
+                   ng-class="{true:'weui-bar__item_on',false:''}[orderStatus == '0']">
+                    待支付
+                </a>
+                <a ui-sref="orderList({orderStatus:'2'})" class="weui-navbar__item"
+                   ng-class="{true:'weui-bar__item_on',false:''}[orderStatus == '2']">
+                    已发货
+                </a>
+                <a ui-sref="orderList({orderStatus:'4'})" class="weui-navbar__item"
+                   ng-class="{true:'weui-bar__item_on',false:''}[orderStatus == '4']">
+                    已完成
+                </a>
+            </div>
+            <div class="goods-list weui-tab__panel">
+                <div class="pageTips" ng-if="outputData.length < 1">
+                    <h2>暂无
+                        "
+                        <span ng-show="orderStatus == ''">全部</span>
+                        <span ng-show="orderStatus == '0'">待支付</span>
+                        <span ng-show="orderStatus == '2'">已发货</span>
+                        <span ng-show="orderStatus == '4'">已完成</span>
+                        "
+                        的订单
+                    </h2>
+                    <p>立刻去 <a href="http://app.yfq.cn/phone/lj/A/phones?gh=member">买手机</a>，<a href="http://app.yfq.cn/flow/list?gh=member">充流量</a></p>
+                </div>
+                <div class="page-loading" ng-show="!outputData"></div>
+                <order-list-item ng-show="!!outputData" ng-repeat="orderListItem in outputData" order-list-item="orderListItem"></order-list-item>
+                <load-next input-data="orderList" output-data="outputData" input-data-tag="inputDataTag" page-size="5"></load-next>
+            </div>
+
+        </div>
+    </div>
+    <app-dialog></app-dialog>
+</div>

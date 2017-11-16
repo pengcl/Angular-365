@@ -1,0 +1,48 @@
+<div class="page couponDetail">
+    <top-nav nav-item='{"menu":false,"back":true,"share":false,"comment":false,"class":"","title":"我的优惠券"}'></top-nav>
+    <div class="content-scrollable has-nav">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:;" class="coupon-box weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img ng-if="coupon.isUsed==0 && coupon.isOverdue==0" class="weui-media-box__thumb"
+                             ng-src="views/member/coupon/unused.png" alt="">
+                        <img ng-if="coupon.isUsed==1 && coupon.isOverdue==0" class="weui-media-box__thumb"
+                             ng-src="views/member/coupon/used.png" alt="">
+                        <img ng-if="coupon.isUsed==0 && coupon.isOverdue==1" class="weui-media-box__thumb"
+                             ng-src="views/member/coupon/overdue.png" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">
+                            <span>{{coupon.couponBatchName}}</span>
+                        </h4>
+                        <p class="weui-media-box__desc">
+                            <span ng-if="coupon.couponBatchType == 'JM'">满100减5，买得越多减得越多</span>
+                            <span ng-if="coupon.couponBatchType == 'MX'">信用卡分期，免息优惠</span>
+                            <span ng-if="coupon.couponBatchType == 'DK'">充值话费、流量可抵扣等额费用</span>
+                        </p>
+                        <p class="weui-media-box__desc">有效期：<span
+                                ng-bind="coupon.validStartTime | date:'yyyy-MM-dd'"></span> 至 <span
+                                ng-bind="coupon.validEndTime | date:'yyyy-MM-dd'"></span></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <article class="weui-article">
+            <!--<section>
+                <h3>使用说明</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. </p>
+            </section>-->
+        </article>
+    </div>
+    <div class="btns-group">
+        <a href="http://app.yfq.cn/flow/list?gh=member&mobile={{appAuth.receiverMobile}}" ng-click="useCoupon($event,coupon.isUsed,coupon.isOverdue)"
+           ng-class="{true:'',false:'disabled'}[coupon.isUsed==0 && coupon.isOverdue==0]"
+           class="btn-primary">立即使用</a>
+        <a ui-sref="sendFriend({couponNo:coupon.couponNo})" ng-click="sendFriend($event,coupon.isUsed,coupon.isOverdue)"
+           ng-class="{true:'',false:'disabled'}[coupon.isUsed==0 && coupon.isOverdue==0]" class="btn-twitter">赠送给朋友</a>
+    </div>
+    <app-dialog></app-dialog>
+</div>

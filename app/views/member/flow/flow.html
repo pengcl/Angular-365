@@ -1,0 +1,54 @@
+<div class="page flow">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的账户"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="page-hd">
+            <div class="flow-circle">
+                <img ng-src="views/member/flow/flow-circle.png">
+                <div class="txt">
+                    <div class="num"><span ng-bind="userStatus.giveFlowNum"></span>M</div>
+                    <div class="label">流量余额</div>
+                </div>
+            </div>
+            <div class="buttons pure-g">
+                <div class="pure-u-1-2">
+                    <a class="btn curr" ui-sref="recharge">我要充值</a>
+                </div>
+                <div class="pure-u-1-2">
+                    <a class="btn" ui-sref="exchange">我要兑换</a>
+                </div>
+            </div>
+        </div>
+        <div class="page-bd">
+            <div class="weui-cells__title">流量余额明细</div>
+            <div class="no-data" ng-show="userFlowLogList.length <= 0">
+                <img src="static/images/document.png">
+                <div class="info">您还没有任何记录，快去<a ui-sref="follow">领取流量</a>吧!</div>
+            </div>
+            <table ng-show="userFlowLogList.length > 0">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>来源</th>
+                    <th>流量数</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="userFlowLog in userFlowLogList">
+                    <td ng-bind="userFlowLog.createtime.time | date:'yyyy-MM-dd'">2017-11-03</td>
+                    <td>
+                        <span ng-show="userFlowLog.givetype == 'recharge'">流量兑换</span>
+                        <span ng-show="userFlowLog.givetype == 'sign'">签到赠送</span>
+                        <span ng-show="userFlowLog.givetype == 'signCountGive'">累计签到赠送</span>
+                        <span ng-show="userFlowLog.givetype == 'turnTable'">转盘抽奖</span>
+                        <span ng-show="userFlowLog.givetype == 'recommend'">推荐奖励</span>
+                    </td>
+                    <td><span ng-bind="userFlowLog.giveflownum"></span>M</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <app-dialog></app-dialog>
+</div>

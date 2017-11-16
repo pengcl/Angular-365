@@ -1,0 +1,17 @@
+<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+    <div class="weui-media-box__hd">
+        <img ng-if="productItem.productType === 0" class="weui-media-box__thumb" ng-src="http://www.yfq.cn:8899/fileserver/medias/{{productItem.mainImageUrl}}" alt="">
+        <img ng-if="productItem.productType === 2" class="weui-media-box__thumb" ng-src="component_modules/orderListItem/productItem/phoneCard.png" alt="">
+        <img ng-if="productItem.productType === 3" class="weui-media-box__thumb" ng-src="component_modules/orderListItem/productItem/phoneCard.png" alt="">
+    </div>
+    <div class="weui-media-box__bd">
+        <h4 class="weui-media-box__title pure-g">
+            <span ng-if="productItem.productType!=3" class="pure-u-2-3" ng-bind="productItem.productName"></span>
+            <span ng-if="productItem.productType==3" class="pure-u-2-3" ng-bind="buyerMemo"></span>
+        </h4>
+        <p class="weui-media-box__desc" ng-if="productItem.productType==0"><span>选择颜色：</span><span ng-bind="productItem.color"></span></p>
+        <p class="weui-media-box__desc" ng-if="productItem.productType==2"><span>选择号码：</span><span ng-bind="buyMobile"></span></p>
+        <p class="weui-media-box__desc" ng-if="productItem.productType==3"><span>选择流量：</span><span ng-bind="productItem.productName"></span></p>
+
+    </div>
+</a>

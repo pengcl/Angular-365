@@ -1,0 +1,39 @@
+.page.record {
+  .page-hd {
+    .status {
+      text-align: center;
+      color: #fff;
+      font-size: 0.12rem;
+      position: relative;
+      &:before {
+        content: " ";
+        position: absolute;
+        left: 50%;
+        width: 1px;
+        background: #fff;
+        top: -0.05rem;
+        bottom: -0.05rem;
+        display: block;
+      }
+      .num {
+        font-size: 0.24rem;
+        line-height: 0.3rem;
+      }
+    }
+  }
+  .page-bd {
+    position: absolute;
+    top: 0.89rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .weui-cells__title {
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0.77em 0.15rem 0.3em;
+    }
+    .weui-panel:first-child {
+      margin-top: 0;
+    }
+  }
+}

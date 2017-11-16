@@ -1,0 +1,12 @@
+.ad {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+  .weui-cells {
+    margin-top: 0;
+    font-size: 0.12rem;
+    line-height: 1;
+  }
+}

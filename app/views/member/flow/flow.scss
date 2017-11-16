@@ -1,0 +1,62 @@
+.page.flow {
+  font-size: 0.12rem;
+  .page-hd {
+    .flow-circle {
+      width: 1.35rem;
+      height: 1.35rem;
+      margin: 0.05rem auto 0.2rem;
+      position: relative;
+      img {
+        display: block;
+        width: 100%;
+      }
+      .txt {
+        position: absolute;
+        color: #4892ff;
+        width: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        padding-top: 0.38rem;
+        .num {
+          font-size: 0.38rem;
+          line-height: 0.3rem;
+        }
+        .label {
+          font-size: 0.13rem;
+          margin-top: 0.12rem;
+          line-height: 0.13rem;
+        }
+      }
+    }
+    .buttons {
+      .btn {
+        border: 1px solid #fff;
+        color: #fff;
+        border-radius: 5rem;
+        margin: 0.05rem 0.3rem;
+        width: auto;
+        background: transparent;
+        font-size: 0.15rem;
+        line-height: 1.6;
+        &.curr {
+          background: #fff;
+          color: #4892ff;
+        }
+      }
+    }
+  }
+  .page-bd {
+    position: absolute;
+    top: 2.46rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    .weui-cells__title {
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0.77em 0.15rem 0.3em;
+    }
+  }
+}
