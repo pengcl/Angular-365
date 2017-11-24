@@ -11,9 +11,9 @@ appServices.factory("OrderSvc", ['$http', '$q', function ($http, $q) {
         return d.promise;
     };
 
-    service.getOrderList = function (memberId, orderStatus, activeTag) {//获取订单列表 promise对象
+    service.getOrderList = function (receiverMobile, orderStatus, activeTag) {//获取订单列表 promise对象
         var d = $q.defer();
-        $http.get(apiConfig.apiHost + '/product/searchOrders.ht?memberId=' + memberId + '&orderStatus=' + orderStatus + '&activeTag=' + activeTag).success(function (data) {
+        $http.get(apiConfig.apiHost + '/product/searchOrders.ht?receiverMobile=' + receiverMobile + '&orderStatus=' + orderStatus + '&activeTag=' + activeTag).success(function (data) {
             return d.resolve(data);
         }).error(function (error) {
             d.reject(error);

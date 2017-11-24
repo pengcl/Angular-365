@@ -22,7 +22,6 @@ app.directive("appDialog", ['$timeout', function ($timeout) {
                     }
                 ],
                 open: function (config) {
-                    console.log(config);
                     this.show = config.show;
                     this.title = config.title;
                     this.body = config.body;

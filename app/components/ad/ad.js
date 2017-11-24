@@ -9,7 +9,7 @@ app.directive("ad", ['$http', function ($http) {
         link: function (scope, element, attrs) {
 
             if(attrs.stateName !== 'seckill'){
-                $http.get(apiConfig.apiHost + '/activity/getQgProduct.ht').success(function (data) {
+                $http.get(apiConfig.apiHost + '/activity/getQgProduct.ht?openId=' + attrs.openId).success(function (data) {
                     data = angular.fromJson(data)[0];
                     if (data.falg) {
                         scope.adShow = true;

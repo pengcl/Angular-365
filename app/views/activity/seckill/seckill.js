@@ -44,7 +44,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     $http.get(apiConfig.apiHost + '/activity/getQgProduct.ht?openId=' + $scope.openid).success(function (data) {
 
         $scope.seckills = angular.fromJson(data)[0];
-        console.log($scope.seckills);
     }).error(function (error) {
         console.log(error);
     });
@@ -115,9 +114,15 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         ActiveCodeSvc.checkMobileCode(mobile, code).then(function success(data) {
             if (data) {
                 SmsSvc.remindSMS($scope.userInfo.memberId, productId).then(function success(data) {
-                    console.log(data);
-                    /*if (data.resultCode === 1) {
-
+                    $scope.smsOverlay = false;
+                    data = angular.fromJson(data)[0];
+                    if (data.result === '200') {
+                        $scope.dialog.open({
+                            show: true,
+                            title: "系统提示",
+                            body: '您已成功预约',
+                            buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+                        });
                     } else {
                         $scope.dialog.open({
                             show: true,
@@ -125,7 +130,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                             body: data.msg,
                             buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
                         });
-                    }*/
+                    }
 
                 });
             } else {

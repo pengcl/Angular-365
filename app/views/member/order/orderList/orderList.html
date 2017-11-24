@@ -22,7 +22,11 @@
                 </a>
             </div>
             <div class="goods-list weui-tab__panel">
-                <div class="pageTips" ng-if="outputData.length < 1">
+                <div class="no-data" ng-show="outputData.length < 1">
+                    <img src="static/images/document.png">
+                    <div class="info">立刻去 <a href="http://app.yfq.cn/phone/lj/A/phones?gh=member">买手机</a>，<a href="http://app.yfq.cn/flow/list?gh=member">充流量</a></div>
+                </div>
+                <!--<div class="pageTips" ng-if="outputData.length < 1">
                     <h2>暂无
                         "
                         <span ng-show="orderStatus == ''">全部</span>
@@ -33,8 +37,10 @@
                         的订单
                     </h2>
                     <p>立刻去 <a href="http://app.yfq.cn/phone/lj/A/phones?gh=member">买手机</a>，<a href="http://app.yfq.cn/flow/list?gh=member">充流量</a></p>
+                </div>-->
+                <div ng-if="!outputData">
+                    <div class="page-loading"></div>
                 </div>
-                <div class="page-loading" ng-show="!outputData"></div>
                 <order-list-item ng-show="!!outputData" ng-repeat="orderListItem in outputData" order-list-item="orderListItem"></order-list-item>
                 <load-next input-data="orderList" output-data="outputData" input-data-tag="inputDataTag" page-size="5"></load-next>
             </div>

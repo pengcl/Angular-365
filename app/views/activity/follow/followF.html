@@ -1,0 +1,159 @@
+<div class="page follow">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"幸运大转盘"}'></top-nav>
+    <div class="content-scrollable has-footer">
+        <h1 class="title"><img src="views/activity/follow/F/title.png"></h1>
+        <div class="notes">
+            <div class="hd">
+                <img style="width: 0.22rem;margin-right: 0.1rem;display: block"
+                     src="views/activity/follow/volume-up.png">
+            </div>
+            <div class="bd" ng-bind="luckyPeoples" ng-show="luckyPeoples"></div>
+            <div class="ft"></div>
+        </div>
+        <div class="roulette">
+            <div class="roulette-box">
+                <ul class="roulette-lists pure-g">
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-0" class="roulette-0 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/10M.png">
+                                </div>
+                                <div class="title">10MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-1" class="roulette-1 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/3M.png">
+                                </div>
+                                <div class="title">3MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-2" class="roulette-2 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/1M.png">
+                                </div>
+                                <div class="title">1MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-7" class="roulette-7 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/2M.png">
+                                </div>
+                                <div class="title">2MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-8" class="roulette-8 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="txt-start" ng-click="start()" user-tracker="lottery">立即<br>抽奖</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-3" class="roulette-3 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/100M.png">
+                                </div>
+                                <div class="title">100MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-6" class="roulette-6 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/20M.png">
+                                </div>
+                                <div class="title">20MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-5" class="roulette-5 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/5M.png">
+                                </div>
+                                <div class="title">5MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="roulette-item pure-u-1-3">
+                        <div id="roulette-4" class="roulette-4 roulette-item-box">
+                            <div class="roulette-item-content">
+                                <div class="img">
+                                    <img src="views/activity/follow/F/30M.png">
+                                </div>
+                                <div class="title">30MB流量</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rule-list">
+            <div class="rule-tit"><span>活动规则</span></div>
+            <dl class="rule-txt">
+                <dt>1</dt>
+                <dd><p class="txt">每位用户限抽一次，百分百中奖！</p></dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>2</dt>
+                <dd>
+                    <p class="txt">奖品为全国手机流量，三网通用的哦！</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>3</dt>
+                <dd>
+                    <p class="txt">抽中的流量请关注公众号“365领流量”进行提取。流量多多，机会多多！</p>
+                </dd>
+            </dl>
+            <dl class="rule-txt">
+                <dt>4</dt>
+                <dd>
+                    <p class="txt">活动最终解释权由365领流量拥有。</p>
+                </dd>
+            </dl>
+        </div>
+
+    </div>
+    <app-dialog></app-dialog>
+</div>
+
+<div id="overlayAward" class="overlay-template" ng-class="{true:'overlay-open',false:''}[award.overlay]">
+    <div class="overlay-hook">
+        <div class="overlay">
+            <div class="wrapper-heading">
+                <div class="award-dialog">
+                    <div class="img">
+                        <img class="img-bg" src="views/activity/follow/awards-bg.png">
+                        <img class="img-prize" src="views/activity/follow/F/30M-big.png">
+                    </div>
+                    <div class="txt" style="color: #fff;margin-top: -0.95rem">
+                        <p style="color: #ffdf4e">恭喜您抽中奖品了！快关注微信<br>公众号“365领流量”领取吧</p>
+                    </div>
+                    <div class="follow-tips"
+                         style="margin-left: -0.125rem;margin-right: -0.125rem;margin-top: 0.5rem; position: relative">
+                        <img src="views/activity/follow/F/follow-tips.png" style="display: block;width: 100%">
+                        <img src="views/activity/follow/F/qr-code.jpg" style="position: absolute;right: 8%;bottom: 0.22rem;width: 22%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

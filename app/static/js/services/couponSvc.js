@@ -1,9 +1,9 @@
 appServices.factory("CouponSvc", ['$http', '$q', function ($http, $q) {
     var service = {};
 
-    service.getCouponList = function (memberId) {//获取订单列表 promise对象
+    service.getCouponList = function (recieverMobile) {//获取订单列表 promise对象
         var d = $q.defer();
-        $http.get(apiConfig.apiHost + '/product/getCouponList.ht?memberId=' + memberId).success(function (data) {
+        $http.get(apiConfig.apiHost + '/product/getCouponList.ht?recieverMobile=' + recieverMobile).success(function (data) {
             var data = angular.fromJson(data);
             var isOverdueCount = 0;
             var isUsedCount = 0;
@@ -47,10 +47,10 @@ appServices.factory("CouponSvc", ['$http', '$q', function ($http, $q) {
         return d.promise;
     };
 
-    service.getCouponDetail = function (memberId, couponNo) {
+    service.getCouponDetail = function (recieverMobile, couponNo) {
         var d = $q.defer();
         var couponDetail;
-        service.getCouponList(memberId).then(function success(data) {
+        service.getCouponList(recieverMobile).then(function success(data) {
             $.each(data.couponList, function (i, k) {
                 if (k.couponNo === couponNo) {
                     couponDetail = k;

@@ -9,11 +9,12 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             templateUrl: "views/activity/invite/code/code.html",
             controller: "inviteCodeController"
         });
-}]).controller('inviteCodeController', ['$scope', 'UserSvc', 'ShareSvc', function ($scope, UserSvc, ShareSvc) {
+}]).controller('inviteCodeController', ['$scope', 'UserSvc', 'ShareSvc', '$location', function ($scope, UserSvc, ShareSvc, $location) {
 
-    UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
+    console.log($scope.openid);
+    UserSvc.getUserInfoByOpenid($location.search().recommender).then(function success(data) {//获取用户信息
         $scope.userInfo = data;
-        console.log(data);
+        console.log($scope.userInfo);
     });
 
     $scope.shareMaskShow = false;

@@ -35,7 +35,6 @@ var config = {
         sass: 'rev/**/*.scss',
         js: 'rev/**/*.js',
         html: 'rev/**/*.html',
-        images: 'rev/**/*.{png,jpg,gif,ico}',
         json: 'rev/json/'
     },
     api: {

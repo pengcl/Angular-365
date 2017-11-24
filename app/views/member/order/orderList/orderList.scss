@@ -3,4 +3,34 @@
     color: #D83E14;
     font-style: normal;
   }
+  .weui-tab {
+    .weui-navbar {
+      background: #fff;
+      &:after {
+        display: none;
+      }
+      .weui-navbar__item {
+        color: #333;
+        &:after{
+          display: none;
+        }
+        &.weui-bar__item_on {
+          background: #fff;
+          color: #60a1ff;
+          &:after {
+            display: block;
+            left: 20%;
+            right: 0;
+            bottom: 0;
+            top: auto;
+            width: 60%;
+            height: 1px;
+            border-right: 0;
+            border-bottom: 2px solid #60a1ff;
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+  }
 }

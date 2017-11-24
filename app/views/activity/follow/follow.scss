@@ -7,7 +7,7 @@
   }
   h1.title {
     width: 70%;
-    margin: 0.3rem auto 0.2rem;
+    margin: 0.25rem auto 0.15rem;
     img {
       display: block;
       width: 100%;
@@ -36,7 +36,7 @@
     }
   }
   .roulette {
-    margin: 0.2rem 0.2rem;
+    margin: 0.15rem 0.2rem;
     overflow: hidden;
     background-image: url("views/activity/follow/roulette-dot.png");
     background-size: 100% 100%;
@@ -83,8 +83,8 @@
       background: #fff;
       border-radius: 0.1rem;
       .img {
-        padding: 0.1rem 0 0.05rem;
-        height: 0.36rem;
+        padding: 0.05rem 0 0;
+        height: 0.46rem;
         img {
           display: block;
           height: 100%;
@@ -148,6 +148,13 @@
     text-align: center;
     margin-top: 0.15rem;
   }
+  .rule-list {
+    .rule-txt {
+      dt {
+        margin-top: 0;
+      }
+    }
+  }
 }
 
 .bind-dialog {
@@ -156,6 +163,12 @@
     background: #fa4e4e;
     color: #fff;
     padding: 0.8em 1.6em 0.8em;
+    position: relative;
+    i {
+      font-style: normal;
+      right: 1.6em;
+      position: absolute;
+    }
   }
   .weui-dialog__bd {
     padding: 1em 1em .8em;
@@ -200,6 +213,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
+      width: 1.5rem;
       transform: translate3d(-50%, -50%, 0);
     }
   }

@@ -5,7 +5,8 @@ appServices.factory('WxSvc', ['$state', '$q', '$http', '$cookieStore', '$locatio
 
     service.getWxParameter = function () {
         var d = $q.defer();
-        $http.get(apiConfig.apiHost + "/product/getWxParameter.ht?shareUrl=" + encodeURI(window.location.href.split("#")[0])).success(function (data, status, headers, config) {
+        $http.get(apiConfig.apiHost + "/product/getWxParameter.ht?shareUrl=" + encodeURI(window.location.href.split("#")[0].replace(/&/gi, "AND"))).success(function (data, status, headers, config) {
+            console.log(apiConfig.apiHost + "/product/getWxParameter.ht?shareUrl=" + encodeURI(window.location.href.split("#")[0].replace(/&/gi, "AND")));
             return d.resolve(angular.fromJson(data));
         }).error(function (error) {
             d.reject(error);

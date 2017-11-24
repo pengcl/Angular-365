@@ -9,7 +9,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             templateUrl: "views/activity/follow/follow.html",
             controller: "followController"
         });
-}]).controller('followController', ['$scope', '$http', '$timeout', '$interval', 'ActiveCodeSvc', 'AuthenticationSvc', 'ShareSvc', 'UserSvc', function ($scope, $http, $timeout, $interval, ActiveCodeSvc, AuthenticationSvc, ShareSvc, UserSvc) {
+}]).controller('followController', ['$scope', '$state', '$http', '$timeout', '$interval', 'ActiveCodeSvc', 'AuthenticationSvc', 'ShareSvc', 'UserSvc', function ($scope, $state, $http, $timeout, $interval, ActiveCodeSvc, AuthenticationSvc, ShareSvc, UserSvc) {
 
     var count = 0;
     var index = 0;
@@ -82,10 +82,17 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     $scope.start = function () {//开始抽奖
         if ($scope.userInfo.turntableNum > 0) {
+            $scope.toast.show = true;
             $http.get(apiConfig.apiHost + "/activity/lottery.ht?customerId=" + $scope.userInfo.memberId).success(function (data, status, headers, config) {//获取抽中物品记录
+                $scope.toast.show = false;
                 $scope.lottery = angular.fromJson(data)[0];
                 if ($scope.lottery.code === "1") {
-                    $scope.dialog.open(true, "系统提示", $scope.prize.msg, [{show: true, txt: '我知道了', eventId: 'hello'}]);
+                    $scope.dialog.open({
+                        show: true,
+                        title: "系统提示",
+                        body: $scope.lottery.msg,
+                        buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+                    });
                 } else {
                     $scope.userInfo.turntableNum = $scope.userInfo.turntableNum - 1;
                     prizeNum = $scope.lottery.result.id - 1;
@@ -100,8 +107,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             $scope.dialog.open({
                 show: true,
                 title: "系统提示",
-                body: '您的抽奖次数为零，不能再抽奖了！',
-                buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+                body: '转盘次数已用完。成功邀请好友关注可获得转盘次数，快去邀请好友吧！',
+                buttons: [{show: true, txt: '邀请好友', eventId: 'invite'}, {show: true, txt: '返回', eventId: 'cancel'}]
             });
         }
     };
@@ -129,36 +136,9 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         $scope.getPrize(url);
     };
 
-    //登录
-    $scope.activeText = "获取验证码";
-    $scope.activeClass = true;
-
-    //输入验证码
-
-    var second = 59, timePromise = undefined;
-    $scope.getActiveCode = function (e, mobile) {
-        if ($(e.currentTarget).hasClass("disabled")) {
-            return false;
+    $scope.$on('appDialog', function (event, eventId) {
+        if (eventId == 'invite') {
+            $state.go('invite');
         }
-        //$scope.loadingToast.open(true);
-        ActiveCodeSvc.getActiveCode(mobile).then(function success(data) {
-            $scope.activeClass = false;
-            //$scope.loadingToast.open(false);
-            timePromise = $interval(function () {
-                if (second <= 0) {
-                    $interval.cancel(timePromise);
-                    timePromise = undefined;
-
-                    second = 59;
-                    $scope.activeText = "重发验证码";
-                    $scope.activeClass = true;
-                } else {
-                    $scope.activeText = second + "秒后可重发";
-                    $scope.activeClass = false;
-                    second--;
-
-                }
-            }, 1000, 100);
-        });
-    };
+    });
 }]);

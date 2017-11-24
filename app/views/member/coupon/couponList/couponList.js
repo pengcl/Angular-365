@@ -15,7 +15,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
         $scope.userInfo = data;
-        CouponSvc.getCouponList($scope.userInfo.memberId).then(function success(data) {
+        CouponSvc.getCouponList($scope.userInfo.mobile).then(function success(data) {
             $scope.couponList = $filter('filter')(data.couponList, {
                 isUsed: $scope.isUsed,
                 isOverdue: $scope.isOverdue

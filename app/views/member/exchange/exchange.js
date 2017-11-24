@@ -29,9 +29,26 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                     if (k.sortNo <= 1000 && k.sortNo >= 30) {
                         products.push(obj);
                     }
-                    $scope.inputPickerData = products;
-                    $scope.product = products[0];
                 });
+
+                $scope.inputPickerData = products.sort(function (a, b) {
+                    return b.value > a.value;
+                });
+
+                var index = 0;
+                for (var i = 0; i < $scope.inputPickerData.length; i++) {
+                    if ($scope.inputPickerData[i].value > $scope.userStatus.giveFlowNum) {
+                        index = i;
+                    }
+                }
+
+                console.log(index, $scope.inputPickerData.length);
+
+                if (index + 1 >= $scope.inputPickerData.length) {
+                    $scope.product = products[index];
+                } else {
+                    $scope.product = products[index + 1];
+                }
             });
         });
     });
@@ -41,8 +58,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     };
 
     $scope.exchange = function (product) {
+        $scope.toast.show = true;
         OrderSvc.exchange($scope.userInfo.memberId, product.productId, product.productFlowPriceId).then(function success(data) {
-            if($scope.userStatus.giveFlowNum - product.value >= 0){
+            $scope.toast.show = false;
+            if ($scope.userStatus.giveFlowNum - product.value >= 0) {
                 $scope.userStatus.giveFlowNum = $scope.userStatus.giveFlowNum - product.value;
             }
             $scope.dialog.open({

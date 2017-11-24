@@ -20,9 +20,9 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     });
 
     ShareSvc.wxShare({
-        title: '邀请好友关注',
-        desc: '领免费流量，更有机会抽大奖哦！',
-        link: 'http://app.ljker.com/activity/invite/code',
+        title: '快来领免费流量！',
+        desc: '还有各种抽奖和秒杀优惠，快来试试吧！',
+        link: 'http://app.ljker.com/activity/invite/code?recommender=' + $scope.openid,
         imgUrl: 'http://app.ljker.com/views/activity/invite/shareImg.jpg',
         shareSuccess: function (data) {
             $scope.$apply($scope.shareMaskShow = false);

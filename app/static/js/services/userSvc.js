@@ -9,7 +9,7 @@ appServices.factory('UserSvc', ['$q', '$http', function ($q, $http) {
             if(data){
                 return d.resolve(angular.fromJson(data));
             }else {
-                return "";
+                return d.resolve("");
             }
         }).error(function (error) {
             d.reject(error);
@@ -20,7 +20,11 @@ appServices.factory('UserSvc', ['$q', '$http', function ($q, $http) {
     service.getUserInfoByMobile = function (mobile) {//获取用户信息 promise对象
         var d = $q.defer();
         $http.get(apiConfig.apiHost + '/member/findOpenId.ht?mobile=' + mobile + '&platform=365flow').success(function (data) {
-            return d.resolve(angular.fromJson(data));
+            if(data){
+                return d.resolve(angular.fromJson(data));
+            }else {
+                return d.resolve("");
+            }
         }).error(function (error) {
             d.reject(error);
         });

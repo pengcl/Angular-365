@@ -13,7 +13,7 @@
     </div>
     <div class="weui-form-preview__ft">
         <a ng-if="orderListItem.orderTypes != 3 && orderListItem.orderTypes != 4 && orderListItem.orderTypes != 5 && orderListItem.buyMobile !== ''" class="weui-form-preview__btn weui-form-preview__btn_default" ng-click="setCertification($event);writeLog('Identity');" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAwNzM5Mjk4Mg==&scene=110#wechat_redirect">实名认证</a>
-        <a ng-if="orderListItem.orderTypes == 1" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:;" ng-click="dialog(true, '', '您提交的催发货信息已经提交成功，请耐心等待', ['我知道了','']);writeLog('UrgeDelivery');">催发货</a>
+        <a ng-if="orderListItem.orderTypes == 1 && orderListItem.buyerEmail == 'ljzma'" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:;" ng-click="dialog(true, '', '您提交的催发货信息已经提交成功，请耐心等待', ['我知道了','']);writeLog('UrgeDelivery');">催发货</a>
         <a ng-if="orderListItem.orderTypes == 2" class="weui-form-preview__btn weui-form-preview__btn_primary" href="#/logistics?orderNo={{orderListItem.orderNo}}" ng-click="writeLog('Logistics');">查看物流</a>
         <a ng-if="orderListItem.orderTypes == 0 && orderListItem.buyerEmail != 'ljzma'" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:;" ng-click="buyNow(orderListItem.salesOrderId,0);writeLog('BuyPay');">立即支付</a>
         <a ng-if="orderListItem.orderTypes == 0 && orderListItem.buyerEmail == 'ljzma'" class="weui-form-preview__btn weui-form-preview__btn_primary" ui-sref="orderDetail({orderNo:orderListItem.orderNo})">订单详情</a>

@@ -288,17 +288,48 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             $scope.$watch('mobileValid', function (n, o, $scope) {
                 if (n) {
                     $("#mobileView").blur();
-                    UserSvc.getUserInfoByMobile($scope.mobile).then(function success(data) {//获取用户信息
+                    UserSvc.getUserInfoByMobile(n).then(function success(data) {//获取用户信息
                         $scope.userInfo = data;
-                        CouponSvc.getCouponList($scope.userInfo.memberId).then(function success(data) {
+                        if($scope.userInfo.mobile){
+                            CouponSvc.getCouponList($scope.userInfo.mobile).then(function success(data) {
 
-                            $scope.couponList = $filter('filter')(data.couponList, {
-                                isUsed: 0,
-                                isOverdue: 0,
-                                type: 'DK'
+                                $scope.couponList = $filter('filter')(data.couponList, {
+                                    isUsed: 0,
+                                    isOverdue: 0,
+                                    type: 'DK'
+                                });
+
+                                ProductSvc.getFlows(n).then(function success(data) {
+                                    $scope.flowList = rebuildData(tempFlowList, data);
+
+                                    var _flowIndex = getDefault($scope.flowList.data);
+
+                                    if (_flowIndex > 6) {
+                                        $scope.selectedFlowProd(true, $scope.flowList.data[_flowIndex], false);
+                                    } else {
+                                        if (_flowIndex !== "") {
+                                            $scope.selectedFlowProd(true, $scope.flowList.data[_flowIndex], true);
+                                        }
+                                    }
+                                });
+                                ProductSvc.getFees(n).then(function success(data) {
+                                    $scope.feeList = rebuildData(tempFeeList, data);
+
+                                    var _feeIndex = getDefault($scope.feeList.data);
+
+                                    if (_feeIndex > 6) {
+                                        $scope.selectedFeeProd(true, $scope.feeList.data[_feeIndex], false);
+                                    } else {
+                                        if (_feeIndex !== "") {
+                                            $scope.selectedFeeProd(true, $scope.feeList.data[_feeIndex], true);
+                                        }
+                                    }
+
+                                });
+
                             });
-
-                            ProductSvc.getFlows($scope.mobile).then(function success(data) {
+                        }else {
+                            ProductSvc.getFlows(n).then(function success(data) {
                                 $scope.flowList = rebuildData(tempFlowList, data);
 
                                 var _flowIndex = getDefault($scope.flowList.data);
@@ -311,7 +342,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                                     }
                                 }
                             });
-                            ProductSvc.getFees($scope.mobile).then(function success(data) {
+                            ProductSvc.getFees(n).then(function success(data) {
                                 $scope.feeList = rebuildData(tempFeeList, data);
 
                                 var _feeIndex = getDefault($scope.feeList.data);
@@ -325,8 +356,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                                 }
 
                             });
-
-                        });
+                        }
                     });
                 } else {
                     $scope.flowList = rebuildData(tempFlowList, false);

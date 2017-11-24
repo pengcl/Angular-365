@@ -23,7 +23,14 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
         $http.get(apiConfig.apiHost + "/member/getSignInfo.ht?custId=" + $scope.userInfo.memberId).success(function (data, status, headers, config) {//获取抽中物品记录
             $scope.signInfo = angular.fromJson(data)[0];
+
             console.log($scope.signInfo);
+            $('.owl-carousel').owlCarousel({
+                loop: false,
+                margin: 0,
+                nav: false,
+                items: 4
+            });
 
         }).error(function (error) {
             console.log(error);
@@ -31,9 +38,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     });
 
     $scope.sign = function () {
+        $scope.toast = true;
         $http.get(apiConfig.apiHost + "/member/sign.ht?custId=" + $scope.userInfo.memberId).success(function (data, status, headers, config) {//获取抽中物品记录
             var result = angular.fromJson(data);
-
+            $scope.toast = false;
             if (result.code == 0) {
                 $scope.signInfo.signDaysCount = $scope.signInfo.signDaysCount + 1;
             }
@@ -50,8 +58,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     };
 
     $scope.getPrize = function (item, target) {
+        $scope.toast = true;
         $http.get(apiConfig.apiHost + "/member/getSignPrize.ht?givelogId=" + item.givelogid).success(function (data, status, headers, config) {//获取抽中物品记录
             var result = angular.fromJson(data)[0];
+            $scope.toast = false;
             if (result.code == 0) {
                 $scope.signInfo[target].isReceive = 1;
             }

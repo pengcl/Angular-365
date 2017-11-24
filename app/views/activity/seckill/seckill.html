@@ -1,7 +1,7 @@
 <div class="page seckill">
     <top-nav
             nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"每周秒杀"}'></top-nav>
-    <div class="content-scrollable">
+    <div class="content-scrollable has-footer">
         <h1 class="title"><img src="views/activity/seckill/title.png"></h1>
         <div class="notes">
             <div class="hd">
@@ -30,12 +30,12 @@
                 <div class="txt countdown" ng-show="!seckills.falg" style="white-space: nowrap"><div class="label">距秒杀开始还有：</div><timer ng-if="seckills.recent.start_time.time" end-time="{{seckills.recent.start_time.time}}"></timer></div>
             </div>
         </div>
-        <div class="countdown" ng-show="seckills.falg && payState != 1"><div class="label">结束倒计时：</div><timer ng-if="seckills.recent.end_time.time" end-time="{{seckills.recent.end_time.time}}"></timer></div>
-        <div class="countdown" ng-show="seckills.falg && payState == 1">您已经买到了，快邀请好友一起来参加吧！</div>
+        <div class="countdown" ng-show="seckills.falg && seckills.recent.status != 2"><div class="label">结束倒计时：</div><timer ng-if="seckills.recent.end_time.time" end-time="{{seckills.recent.end_time.time}}"></timer></div>
+        <div class="countdown" ng-show="seckills.falg && seckills.recent.status == 2">您已经买到了，快邀请好友一起来参加吧！</div>
         <div class="countdown" ng-show="!seckills.falg">秒杀还没有，提前预约提醒参加秒杀！</div>
         <div class="btn-wrap circle">
-            <div class="btn" ng-show="seckills.falg && payState != 1" ng-click="buy()" user-tracker="buy">立即抢购</div>
-            <div class="btn" ng-show="seckills.falg && payState == 1" ui-sref="inviteCode" user-tracker="invite">邀请好友</div>
+            <div class="btn" ng-show="seckills.falg && seckills.recent.status != 2" ng-click="buy()" user-tracker="buy">立即抢购</div>
+            <div class="btn" ng-show="seckills.falg && seckills.recent.status == 2" ui-sref="inviteCode" user-tracker="invite">邀请好友</div>
             <div class="btn" ng-show="!seckills.falg" ng-click="smsOverlay = true" user-tracker="subscribe">预约提醒</div>
         </div>
 
@@ -60,7 +60,7 @@
             </ul>
 
             <div class="btn-wrap circle">
-                <div class="btn">下期预约提醒</div>
+                <div class="btn" ng-click="smsOverlay = true" user-tracker="subscribe">下期预约提醒</div>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
             <dl class="rule-txt">
                 <dt>4</dt>
                 <dd>
-                    <p class="txt">秒杀产品支付时限为30分钟，超时不支付，产品将重新放回秒杀场，供其他用户进行秒杀。</p>
+                    <p class="txt">秒杀产品支付时限为5分钟，超时不支付，产品将重新放回秒杀场，供其他用户进行秒杀。</p>
                 </dd>
             </dl>
             <dl class="rule-txt">
@@ -108,7 +108,7 @@
         <div class="overlay">
             <div class="wrapper-heading">
                 <div class="bind-dialog weui-dialog" ng-show="smsOverlay">
-                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">绑定手机，领取奖品</strong></div>
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">预约提醒</strong><i ng-click="smsOverlay = false">X</i></div>
                     <div class="weui-dialog__bd">
                         <form id="signInForm" name="signInForm" class="pure-form pure-form-aligned">
                             <div class="pure-control-group">
@@ -132,7 +132,7 @@
                     </div>
                     <div class="weui-dialog__ft">
                         <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary"
-                           ng-click="remainSms(mobile,activeCode,seckills.recent.product_id)">预约提醒</a>
+                           ng-click="remainSms(mobile,activeCode,seckills.recent.id)" user-tracker="remainSms">预约提醒</a>
                     </div>
                 </div>
             </div>

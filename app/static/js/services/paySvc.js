@@ -4,6 +4,7 @@ appServices.factory("PaySvc", ['$http', '$q', function ($http, $q) {
     service.pay = function (orderId, payType) {
         var d = $q.defer();
         $http.jsonp(apiConfig.apiHost + '/pay/payment/orderPay.ht?orderId=' + orderId + '&payType=' + payType + '&isOrder=pay&callback=JSON_CALLBACK').success(function (data) {
+            //alert(apiConfig.apiHost + '/pay/payment/orderPay.ht?orderId=' + orderId + '&payType=' + payType + '&isOrder=pay&callback=JSON_CALLBACK');
             return d.resolve(data);
         }).error(function (error) {
             d.reject(error);

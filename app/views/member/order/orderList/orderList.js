@@ -15,7 +15,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
         $scope.userInfo = data;
 
-        OrderSvc.getOrderList($scope.userInfo.memberId, $scope.orderStatus).then(function success(data) {
+        OrderSvc.getOrderList($scope.userInfo.mobile, $scope.orderStatus).then(function success(data) {
             $scope.orderList = (angular.fromJson(data)).sort(function (a, b) {
                 return Date.parse(b.createTime) - Date.parse(a.createTime);
             });
