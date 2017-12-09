@@ -14,7 +14,9 @@
                 <div class="weui-cell" style="padding-bottom: 0;padding-top: 0.15rem">
                     <div class="weui-cell__bd">
                         <input id="mobile" ng-model="mobile" name="mobile" ng-blur="inputMobile(mobile)"
-                               ng-pattern="/^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/" pattern="/^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/" ng-minlength="11" ng-maxlength="11"
+                               ng-pattern="/^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/"
+                               pattern="/^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/"
+                               ng-minlength="11" ng-maxlength="11"
                                class="weui-input"
                                placeholder="请输入需要充值的手机号码" type="hidden" required/>
 
@@ -60,16 +62,17 @@
 
                 <div class="item-lists pure-g pdw">
                     <div class="list-item pure-u-1-3" ng-repeat="item in flowList.data | limitTo : flowLimitTo"
-                         ng-show="item.stock">
-                        <div class="item-box" ng-click="selectedFlowProd(item.stock,item,true,$event);"
+                         ng-show="item.stock && item.sortNo >= 30">
+                        <div class="item-box"
+                             ng-click="selectedFlowProd(item.stock,item,true,flowList.area_operator,$event);"
                              ng-class="{true:'active',false:''}[item === flowProduct]" user-tracker="selectedFlowProd">
                             <div class="title" ng-bind="item.productName"></div>
                             <div class="disc"><span ng-bind="item.regionProducts | flowSalesPrice | number : 2"></span>元
                             </div>
                             <ins class="hot" ng-if="item.ifHot == 1"><img style="display: block;width: 0.3rem"
                                                                           src="views/activity/recharge/hot.png"></ins>
-                            <span class="flag"
-                                  ng-if="item.sortNo >= 100 && couponList.length > 0 && item.ifHot != 1">优惠</span>
+                            <!--<span class="flag"
+                                  ng-if="item.sortNo >= 100 && couponList.length > 0 && item.ifHot != 1">优惠</span>-->
                         </div>
                     </div>
                     <div class="list-item pure-u-1-3">
@@ -146,8 +149,8 @@
                             </div>
                             <ins class="hot" ng-if="item.ifHot == 1"><img style="display: block;width: 0.3rem"
                                                                           src="views/activity/recharge/hot.png"></ins>
-                            <span class="flag"
-                                  ng-if="item.sortNo >= 50 && couponList.length > 0 && item.ifHot != 1">优惠</span>
+                            <!--<span class="flag"
+                                  ng-if="item.sortNo >= 50 && couponList.length > 0 && item.ifHot != 1">优惠</span>-->
                         </div>
                     </div>
                     <div class="list-item pure-u-1-3">
@@ -210,7 +213,7 @@
 
         </form>
     </div>
-    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <div class="weui-tabbar" ng-show="!isWx" ng-include="'views/include/footerNav/footerNav.html'"></div>
     <app-footer-nav page-active="recharge"></app-footer-nav>
     <app-dialog></app-dialog>
 </div>

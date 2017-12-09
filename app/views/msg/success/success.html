@@ -9,9 +9,9 @@
                     <span ng-bind="errorStatus" ng-if="errorStatus!='server' && errorStatus!='401'"></span>
                     <span ng-bind="errorData.title" ng-if="errorStatus=='server'"></span>
                 </h2>-->
-                <p class="weui-msg__desc">已成功为号码 <span ng-bind="mobile"></span> 充值 <span
+                <p class="weui-msg__desc" style="font-size: 0.13rem">已成功为号码 <span ng-bind="mobile"></span> 充值 <span
                         ng-bind="rechargeDetails"></span>，</p>
-                <p class="weui-msg__desc">请留意短信到账通知。
+                <p class="weui-msg__desc" style="font-size: 0.13rem">请留意短信到账通知。
                     <em ng-if="getCoupon > 0"><span ng-bind="getCoupon"></span>元优惠券已存入该号码账户中</em>
                 </p>
             </div>
@@ -29,8 +29,8 @@
             </div>
 
             <div class="weui-msg__opr-area" style="margin-top: 0.4rem">
-                <p class="weui-btn-area" style="width: 30%;margin: 0 auto;">
-                    <a href="http://app.yfq.cn" class="weui-btn weui-btn_primary">逛逛手机商城</a>
+                <p class="weui-btn-area" style="width: 40%;margin: 0 auto;">
+                    <a href="http://app.yfq.cn/phone/lj/B/phones?appType=365flow" class="weui-btn weui-btn_primary">逛逛手机商城</a>
                 </p>
             </div>
         </div>

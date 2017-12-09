@@ -9,7 +9,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             templateUrl: "views/activity/recharge/recharge.html",
             controller: "rechargeController"
         });
-}]).controller('rechargeController', ['$scope', '$stateParams', '$filter', '$timeout', '$location', '$cookieStore', 'UserSvc', 'ProductSvc', 'CouponSvc', 'PaySvc', function ($scope, $stateParams, $filter, $timeout, $location, $cookieStore, UserSvc, ProductSvc, CouponSvc, PaySvc) {
+}]).controller('rechargeController', ['$scope', '$stateParams', '$filter', '$timeout', '$location', '$cookieStore', 'UserSvc', 'ProductSvc', 'CouponSvc', 'PaySvc', 'ShareSvc', function ($scope, $stateParams, $filter, $timeout, $location, $cookieStore, UserSvc, ProductSvc, CouponSvc, PaySvc, ShareSvc) {
 
     $scope.feeLimitTo = 5;
     $scope.flowLimitTo = 5;
@@ -21,6 +21,13 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     if ($stateParams.mobile) {
         $scope.mobile = $stateParams.mobile;
     }
+
+    ShareSvc.wxShare({
+        title: '流量特惠充值，买一送一啦！',
+        desc: '流量话费充值多优惠，更有多重好礼！尽在365领流量',
+        link: 'http://app.ljker.com/activity/recharge',
+        imgUrl: 'http://app.ljker.com/views/activity/follow/shareImg.jpg'
+    });
 
     $scope.productType = 'flow';
     //是否属于默认选中商品
@@ -59,7 +66,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         $scope.referrerId = "";
     }
 
-    $scope.selectedFlowProd = function (checked, product, isMore, e) {
+    $scope.selectedFlowProd = function (checked, product, isMore, area_operator, e) {
         if (!checked) {
             $scope.dialog.open({
                 show: true,
@@ -87,22 +94,34 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         }
 
         if ($scope.couponList) {
-            if (product.flowRate >= 100 && $scope.couponList.length >= 1) {
-                $scope.flowCoupons = $scope.couponList[0].couponNo;
-                $scope.flowCouponLength = 1;
-            }
+            if (area_operator === "广东联通") {
+                if (product.flowRate >= 500 && $scope.couponList.length >= 1) {
+                    $scope.flowCoupons = $scope.couponList[0].couponNo;
+                    $scope.flowCouponLength = 1;
+                }
 
-            if (product.flowRate > 300 && $scope.couponList.length >= 2) {
-                $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo;
-                $scope.flowCouponLength = 2;
-            }
-            if (product.flowRate >= 1000 && $scope.couponList.length >= 3) {
-                $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo;
-                $scope.flowCouponLength = 3;
-            }
-            if (product.flowRate >= 4000 && $scope.couponList.length >= 5) {
-                $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo + "," + $scope.couponList[3].couponNo + "," + $scope.couponList[4].couponNo;
-                $scope.flowCouponLength = 5;
+                if (product.flowRate > 3000 && $scope.couponList.length >= 2) {
+                    $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo;
+                    $scope.flowCouponLength = 2;
+                }
+            } else {
+                if (product.flowRate >= 100 && $scope.couponList.length >= 1) {
+                    $scope.flowCoupons = $scope.couponList[0].couponNo;
+                    $scope.flowCouponLength = 1;
+                }
+
+                if (product.flowRate > 300 && $scope.couponList.length >= 2) {
+                    $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo;
+                    $scope.flowCouponLength = 2;
+                }
+                if (product.flowRate >= 1000 && $scope.couponList.length >= 3) {
+                    $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo;
+                    $scope.flowCouponLength = 3;
+                }
+                if (product.flowRate >= 4000 && $scope.couponList.length >= 5) {
+                    $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo + "," + $scope.couponList[3].couponNo + "," + $scope.couponList[4].couponNo;
+                    $scope.flowCouponLength = 5;
+                }
             }
         } else {
             $scope.flowCoupons = "";

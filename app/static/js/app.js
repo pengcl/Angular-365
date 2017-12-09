@@ -19,7 +19,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/member/home');
 
-}]).controller('appController', ['$scope', '$location', '$cookieStore', 'UserAgentSvc', 'WxSvc', 'UserSvc', function ($scope, $location, $cookieStore, UserAgentSvc, WxSvc, UserSvc) {
+}]).controller('appController', ['$scope', '$rootScope', '$location', '$cookieStore', 'UserAgentSvc', 'WxSvc', 'UserSvc', function ($scope, $rootScope, $location, $cookieStore, UserAgentSvc, WxSvc, UserSvc) {
 
     $scope.isWx = UserAgentSvc.isWx;
     $scope.activityTag = '365';
@@ -28,29 +28,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 
     if ($scope.isWx) {
 
-        $scope.openid = WxSvc.getOpenid(window.location.href);
+        $rootScope.openid = WxSvc.getOpenid(window.location.href);
 
-        UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
+        UserSvc.getUserInfoByOpenid($rootScope.openid).then(function success(data) {//获取用户信息
             $scope.userInfo = data;
         });
-
-        /*WxSvc.getWxParameter().then(function success(data) {
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data[0].appId, // 必填，公众号的唯一标识
-                timestamp: data[0].timestamp, // 必填，生成签名的时间戳
-                nonceStr: data[0].nonceStr, // 必填，生成签名的随机串
-                signature: data[0].signature,// 必填，签名，见附录1
-                jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-            });
-        });*/
     }
-
-    /*$scope.$watch('userInfo', function (n, o, $scop) {
-        if (n !== o && n !== undefined) {
-            console.log(n);
-        }
-    });*/
 
 }]).run(['$rootScope', '$state', '$stateParams', '$compile', '$location', '$timeout', 'UserAgentSvc', 'AuthenticationSvc', 'WxSvc', function ($rootScope, $state, $stateParams, $compile, $location, $timeout, UserAgentSvc, AuthenticationSvc, WxSvc) {
 
@@ -79,18 +62,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                 }
             });
         }
-
-        /*$rootScope.state.menu.open(false);
-        $rootScope.state.overlay.open(false, '');
-        $rootScope.state.notification.open(false, '');
-        $rootScope.state.share.open(false, {
-            title: '翼分期商城 - 会员中心',
-            desc: '翼分期商城 - 流量话费充值平台',
-            summary: '流量话费充值平台',
-            site: 'app.yfq.cn',
-            pic: '',
-            url: window.location.protocol + window.location.host + '/userController/index.html'
-        });*/
     });
 
     $rootScope.$on('$locationChangeSuccess', function () {

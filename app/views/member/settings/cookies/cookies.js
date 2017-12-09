@@ -9,7 +9,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             templateUrl: "views/member/settings/cookies/cookies.html",
             controller: "cookiesController"
         });
-}]).controller('cookiesController', ['$scope', '$cookieStore', 'UserSvc', function ($scope, $cookieStore, UserSvc) {
+}]).controller('cookiesController', ['$scope', '$cookieStore', 'UserSvc', function ($scope, $cookieStore, UserSvc, openid) {
     $scope.removeCookies = function () {
         $cookieStore.remove('openid');
         $cookieStore.remove('userInfo');
@@ -24,6 +24,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
         $scope.$on('appDialog', function (e, eventId) {
             if (eventId === 'removeCookies') {
+                location.reload();
                 $scope.cookiesRemoved = true;
             }
         })
