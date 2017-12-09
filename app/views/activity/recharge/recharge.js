@@ -9,7 +9,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             templateUrl: "views/activity/recharge/recharge.html",
             controller: "rechargeController"
         });
-}]).controller('rechargeController', ['$scope', '$stateParams', '$filter', '$location', '$cookieStore', 'UserSvc', 'ProductSvc', 'CouponSvc', 'PaySvc', function ($scope, $stateParams, $filter, $location, $cookieStore, UserSvc, ProductSvc, CouponSvc, PaySvc) {
+}]).controller('rechargeController', ['$scope', '$stateParams', '$filter', '$timeout', '$location', '$cookieStore', 'UserSvc', 'ProductSvc', 'CouponSvc', 'PaySvc', function ($scope, $stateParams, $filter, $timeout, $location, $cookieStore, UserSvc, ProductSvc, CouponSvc, PaySvc) {
 
     $scope.feeLimitTo = 5;
     $scope.flowLimitTo = 5;
@@ -92,9 +92,17 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 $scope.flowCouponLength = 1;
             }
 
-            if (product.flowRate >= 500 && $scope.couponList.length >= 2) {
+            if (product.flowRate > 300 && $scope.couponList.length >= 2) {
                 $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo;
                 $scope.flowCouponLength = 2;
+            }
+            if (product.flowRate >= 1000 && $scope.couponList.length >= 3) {
+                $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo;
+                $scope.flowCouponLength = 3;
+            }
+            if (product.flowRate >= 4000 && $scope.couponList.length >= 5) {
+                $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo + "," + $scope.couponList[3].couponNo + "," + $scope.couponList[4].couponNo;
+                $scope.flowCouponLength = 5;
             }
         } else {
             $scope.flowCoupons = "";
@@ -174,6 +182,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     };
 
     $scope.pay = function (mobileValid, product, regionProduct, coupons) {
+        $scope.isSubmit = true;
         $scope.toast.show = true;
         if (!mobileValid) {
             $scope.toast.show = false;
@@ -187,7 +196,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         }
         if (regionProduct) {
 
-            PaySvc.flowPay($scope.mobile, product.productId, regionProduct.productFlowPriceId, $scope.flowList.area_operator, 'recharge', $scope.gh, encodeURIComponent('http://home.yfq.cn/member/pure/pages/success/success.html?mobile=' + $scope.mobile + '&returnUrl=' + encodeURIComponent(window.location.href)), coupons, $scope.referrerId, $scope.category + $scope.productType).then(function success(data) {
+            PaySvc.flowPay($scope.mobile, product.productId, regionProduct.productFlowPriceId, $scope.flowList.area_operator, 'recharge', $scope.gh, encodeURIComponent('http://app.ljker.com/success?mobile=' + $scope.mobile + '&returnUrl=' + encodeURIComponent(window.location.href)), coupons, $scope.referrerId, $scope.category + $scope.productType).then(function success(data) {
                 $scope.toast.show = false;
                 if (data.result) {
                     window.location.href = data.payUrl;
@@ -290,7 +299,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                     $("#mobileView").blur();
                     UserSvc.getUserInfoByMobile(n).then(function success(data) {//获取用户信息
                         $scope.userInfo = data;
-                        if($scope.userInfo.mobile){
+                        if ($scope.userInfo.mobile) {
                             CouponSvc.getCouponList($scope.userInfo.mobile).then(function success(data) {
 
                                 $scope.couponList = $filter('filter')(data.couponList, {
@@ -328,7 +337,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                                 });
 
                             });
-                        }else {
+                        } else {
                             ProductSvc.getFlows(n).then(function success(data) {
                                 $scope.flowList = rebuildData(tempFlowList, data);
 
@@ -370,6 +379,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     $scope.$watch('mobileView', function (n, o, $scope) {
         if (n) {
+            $scope.isSubmit = false;
             var value = n;
             value = value.replace(/\s*/g, "");
             var result = [];
@@ -395,11 +405,14 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         $scope.flowCouponLength = 0;
         $scope.feeCouponLength = 0;
 
-        if (n !== undefined && n.length == 11) {
-            $scope.mobileValid = $scope.mobile;
-        } else {
-            $scope.mobileValid = false;
-        }
+        $timeout(function () {
+            if (n !== undefined && n.length == 11 && $scope.salesForm.mobile.$valid) {
+                $scope.mobileValid = $scope.mobile;
+            } else {
+                $scope.mobileValid = false;
+            }
+        });
+
     });
 }]);
 

@@ -19,7 +19,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             $scope.orderList = (angular.fromJson(data)).sort(function (a, b) {
                 return Date.parse(b.createTime) - Date.parse(a.createTime);
             });
-
         });
     });
 }]);

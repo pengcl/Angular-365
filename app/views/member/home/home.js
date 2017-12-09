@@ -14,7 +14,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         $scope.userInfo = data;
         UserSvc.getUserStatus($scope.userInfo.memberId).then(function success(data) {
             $scope.userStatus = angular.fromJson(data);
-            console.log($scope.userStatus);
         });
     });
 }]);

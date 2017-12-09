@@ -1,4 +1,4 @@
-app.directive("userTracker", [function () {
+app.directive("userTracker", ['$location', function ($location) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

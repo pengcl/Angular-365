@@ -26,7 +26,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                         productName: k.productName,
                         value: k.sortNo
                     };
-                    if (k.sortNo <= 1000 && k.sortNo >= 30) {
+                    if (k.sortNo <= 1000 && k.sortNo >= 100) {
                         products.push(obj);
                     }
                 });
@@ -41,8 +41,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                         index = i;
                     }
                 }
-
-                console.log(index, $scope.inputPickerData.length);
 
                 if (index + 1 >= $scope.inputPickerData.length) {
                     $scope.product = products[index];

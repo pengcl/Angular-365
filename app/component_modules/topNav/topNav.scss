@@ -119,3 +119,25 @@ nav.nav {
     }
   }
 }
+
+.weui-dialog.watch {
+  .weui-dialog__hd {
+    background: #3486ff;
+    color: #fff;
+    background-image: url("component_modules/topNav/watch-hd-bg.png");
+    background-position: center bottom;
+    .weui-dialog__title {
+      font-size: 0.16rem;
+    }
+    .close {
+      position: absolute;
+      right: 0.08rem;
+      top: 0.08rem;
+      width: 0.14rem;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}

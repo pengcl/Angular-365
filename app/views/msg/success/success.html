@@ -1,0 +1,38 @@
+<div class="page success success-status">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"365领流量"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="weui-msg">
+            <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
+            <div class="weui-msg__text-area">
+                <!--<h2 class="weui-msg__title">
+                    <span ng-bind="errorStatus" ng-if="errorStatus!='server' && errorStatus!='401'"></span>
+                    <span ng-bind="errorData.title" ng-if="errorStatus=='server'"></span>
+                </h2>-->
+                <p class="weui-msg__desc">已成功为号码 <span ng-bind="mobile"></span> 充值 <span
+                        ng-bind="rechargeDetails"></span>，</p>
+                <p class="weui-msg__desc">请留意短信到账通知。
+                    <em ng-if="getCoupon > 0"><span ng-bind="getCoupon"></span>元优惠券已存入该号码账户中</em>
+                </p>
+            </div>
+
+            <div class="weui-cells" style="text-align: left;background: #eff5ff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+                        <img src="views/msg/watch/qr-code.jpg" style="width: 1rem;display: block">
+                    </div>
+                    <div class="weui-cell__bd">
+                        <p style="font-size: 0.13rem">识别二维码，关注公众号领取优惠券</p>
+                        <p style="font-size: 0.12rem;color: #888888;margin-top: 0.1rem">长按二维码，并点击“识别图中二维码”<br>即可关注“<em>365领流量</em>”官方公众号</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weui-msg__opr-area" style="margin-top: 0.4rem">
+                <p class="weui-btn-area" style="width: 30%;margin: 0 auto;">
+                    <a href="http://app.yfq.cn" class="weui-btn weui-btn_primary">逛逛手机商城</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -52,14 +52,15 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 AuthenticationSvc.binding($scope.openid, mobile).then(function success(data) {
                     if (data.resultCode === 1) {
                         $scope.userInfo = data;
+                        /*$scope.userInfo.isLogin = true;*/
                         $cookieStore.put('userInfo', $scope.userInfo);
 
                         if ($location.search().path) {
                             $location.path($location.search().path);
                         } else {
-                            if($scope.previousState.name){
+                            if ($scope.previousState.name) {
                                 $state.go($scope.previousState.name);
-                            }else {
+                            } else {
                                 $location.path('home');
                             }
                         }

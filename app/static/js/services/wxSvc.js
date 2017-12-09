@@ -1,12 +1,11 @@
 "use strict";
 
-appServices.factory('WxSvc', ['$state', '$q', '$http', '$cookieStore', '$location', function ($state, $q, $http, $cookieStore, $location) {
+appServices.factory('WxSvc', ['$rootScope', '$state', '$q', '$http', '$timeout', '$cookieStore', '$location', function ($rootScope, $state, $q, $http, $timeout, $cookieStore, $location) {
     var service = {};
 
     service.getWxParameter = function () {
         var d = $q.defer();
         $http.get(apiConfig.apiHost + "/product/getWxParameter.ht?shareUrl=" + encodeURI(window.location.href.split("#")[0].replace(/&/gi, "AND"))).success(function (data, status, headers, config) {
-            console.log(apiConfig.apiHost + "/product/getWxParameter.ht?shareUrl=" + encodeURI(window.location.href.split("#")[0].replace(/&/gi, "AND")));
             return d.resolve(angular.fromJson(data));
         }).error(function (error) {
             d.reject(error);
@@ -16,7 +15,7 @@ appServices.factory('WxSvc', ['$state', '$q', '$http', '$cookieStore', '$locatio
 
     service.getOpenid = function (callBackUrl) {
 
-        if($location.path() === '/watch'){
+        if ($location.path() === '/watch') {
             return false;
         }
 
@@ -29,7 +28,9 @@ appServices.factory('WxSvc', ['$state', '$q', '$http', '$cookieStore', '$locatio
             return $cookieStore.get('openid');
         }
 
-        window.location.href = "http://m.ljker.com/member/auth.ht?platform=365flow&callBackUrl=" + encodeURI(callBackUrl);
+        $timeout(function () {
+            window.location.href = "http://m.ljker.com/member/auth.ht?authType=" + $rootScope.state.name + "&platform=365flow&callBackUrl=" + encodeURI(callBackUrl);
+        });
     };
 
     return service;

@@ -17,7 +17,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     $scope.smsOverlay = false;
 
-    $http.get(apiConfig.apiHost + "/activity/getTurntableProduct.ht").success(function (data, status, headers, config) {
+    /*$http.get(apiConfig.apiHost + "/activity/getTurntableProduct.ht").success(function (data, status, headers, config) {
         $scope.roulettes = angular.fromJson(data);
 
         var getItem = function () {
@@ -32,7 +32,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         }, 2000);
     }).error(function (error) {
         console.log(error);
-    });
+    });*/
 
     ShareSvc.wxShare({
         title: '周三秒杀，超值优惠！',
@@ -44,6 +44,17 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     $http.get(apiConfig.apiHost + '/activity/getQgProduct.ht?openId=' + $scope.openid).success(function (data) {
 
         $scope.seckills = angular.fromJson(data)[0];
+
+        var getItem = function () {
+            return "恭喜" + getRandomReceiverPhone() + "用户，获得了" + $scope.seckills.recent.activity_name;
+        };
+
+        $scope.luckyPeoples = getItem();
+        $scope.luckyTime = getRanDomTime();
+        $interval(function () {
+            $scope.luckyPeoples = getItem();
+            $scope.luckyTime = getRanDomTime();
+        }, 2000);
     }).error(function (error) {
         console.log(error);
     });

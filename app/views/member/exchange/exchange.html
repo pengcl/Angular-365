@@ -28,7 +28,12 @@
             </a>
         </div>
 
-        <div class="weui-cells__tips" style="text-align: right">满30M才能兑换</div>
+        <div class="weui-cells__tips">
+            1. 只能兑换到已绑定的手机号码<br>
+            2. 支持移动、联通和电信手机号码的流量兑换<br>
+            3. 每次兑换流量最少为100M。<br>
+            4. 流量有限期至当月月底，请留意您的月结日期，避免浪费。<br>
+        </div>
 
         <div class="weui-cells">
             <a class="weui-cell weui-cell_access" ng-class="{true:'disabled',false:''}[userStatus.giveFlowNum - product.value < 0]" ng-click="exchange(product)"

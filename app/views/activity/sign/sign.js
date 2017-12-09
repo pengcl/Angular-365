@@ -21,10 +21,14 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
         $scope.userInfo = data;
 
+        UserSvc.getUserStatus($scope.userInfo.memberId).then(function success(data) {
+            $scope.userStatus = angular.fromJson(data);
+            console.log($scope.userStatus);
+        });
+
         $http.get(apiConfig.apiHost + "/member/getSignInfo.ht?custId=" + $scope.userInfo.memberId).success(function (data, status, headers, config) {//获取抽中物品记录
             $scope.signInfo = angular.fromJson(data)[0];
 
-            console.log($scope.signInfo);
             $('.owl-carousel').owlCarousel({
                 loop: false,
                 margin: 0,
@@ -44,6 +48,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             $scope.toast = false;
             if (result.code == 0) {
                 $scope.signInfo.signDaysCount = $scope.signInfo.signDaysCount + 1;
+                $scope.signInfo.isSign = 1;
             }
             $scope.dialog.open({
                 show: true,

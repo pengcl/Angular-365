@@ -26,10 +26,11 @@
                                                  href="javascript:;" ng-bind="activeText">获取验证码</a></div>
                     </div>
                     <a class="bind btn circle" href="javascript:;" ng-click="signIn(mobile,activeCode)">绑定手机号</a>
-                    <p class="weui-cells__tips"><img src="views/member/auth/tips.png"><span>每月只能解绑一次手机号</span></p>
+                    <!--<p class="weui-cells__tips"><img src="views/member/auth/tips.png"><span>每月只能解绑一次手机号</span></p>-->
                 </fieldset>
             </form>
         </div>
     </div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
     <app-dialog></app-dialog>
 </div>

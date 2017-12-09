@@ -106,8 +106,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         } else {
             $scope.dialog.open({
                 show: true,
-                title: "系统提示",
-                body: '转盘次数已用完。成功邀请好友关注可获得转盘次数，快去邀请好友吧！',
+                title: "提示",
+                body: '转盘次数已用完。邀请一位好友关注，您即可再获得3次转盘抽奖机会！',
                 buttons: [{show: true, txt: '邀请好友', eventId: 'invite'}, {show: true, txt: '返回', eventId: 'cancel'}]
             });
         }

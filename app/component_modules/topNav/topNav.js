@@ -12,6 +12,12 @@ app.directive("topNav", [function () {
                 history.back();
             };
 
+            scope.watch = false;
+
+            scope.showWatch = function (state) {
+                scope.watch = state;
+            }
+
             /*scope.$on('$destroy', function() {
                 console.log("destroy");
             });*/

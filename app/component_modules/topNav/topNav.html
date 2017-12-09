@@ -1,29 +1,55 @@
-<nav class="nav {{navItem.class}}" ng-show="navItem.visibility">
-    <div class="nav-group">
+<div>
+    <nav class="nav {{navItem.class}}" ng-show="navItem.visibility">
+        <div class="nav-group">
         <span ng-if="navItem.leftItem==='back'" class="nav-item js-back" ng-click="back()">
             <span class="icon-arrow-left"></span>
         </span>
-        <span ng-if="navItem.leftItem==='menu'" class="nav-item" ng-click="menu(true)">
+            <span ng-if="navItem.leftItem==='menu'" class="nav-item" ng-click="menu(true)">
             <span class="icon-menu"></span>
         </span>
-        <span ng-if="navItem.leftItem==='logo'" class="nav-item" ng-click="menu(true)">
+            <span ng-if="navItem.leftItem==='logo'" class="nav-item" ng-click="menu(true)">
             <img src="static/images/logo.png">
         </span>
-    </div>
+        </div>
 
-    <div class="title-page">{{title}}
-        <span class="subtext-page"><!--{{subtext}}--></span>
-    </div>
+        <div class="title-page">{{title}}
+            <span class="subtext-page"><!--{{subtext}}--></span>
+        </div>
 
-    <div class="nav-group right">
-        <span class="nav-item" ng-if="navItem.rightItem==='share'" ng-click="share.open(true)">
+        <div class="nav-group right">
+        <span class="nav-item" style="width: 0.7rem;font-size: 0.12rem" ng-if="navItem.rightItem==='watch'" ng-click="showWatch(true)">
+            收藏关注
+        </span>
+            <span class="nav-item" ng-if="navItem.rightItem==='share'" ng-click="share.open(true)">
             <span class="icon-share"></span>
         </span>
-        <span class="nav-item" ng-if="navItem.rightItem==='invite'" ui-sref="invite">
+            <span class="nav-item" ng-if="navItem.rightItem==='invite'" ui-sref="invite">
             <img src="component_modules/topNav/invite.png">
         </span>
-        <span class="nav-item" ng-if="navItem.rightItem==='bill'" ui-sref="bill">
+            <span class="nav-item" ng-if="navItem.rightItem==='bill'" ui-sref="bill">
             <span class="icon-graph-line"></span>
         </span>
+        </div>
+    </nav>
+
+    <div ng-if="watch">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog watch">
+            <div class="weui-dialog__hd">
+                <strong class="weui-dialog__title">关注公众号<br>优惠多多，奖品多多！</strong>
+                <span class="close" ng-click="showWatch(false)">
+                    <img src="static/images/close.png">
+                </span>
+            </div>
+            <div class="weui-dialog__bd">
+                <div class="img-box" style="margin: 0.1rem 0.1rem 0;">
+                    <img src="views/msg/watch/qr-code.jpg">
+                </div>
+                <p style="font-size: 0.12rem;margin-bottom: 0.1rem;text-align: center">
+                    长按二维码，并点击“识别图中二维码”<br>
+                    即可关注“365领流量”官方公众号
+                </p>
+            </div>
+        </div>
     </div>
-</nav>
+</div>

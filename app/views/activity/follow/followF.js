@@ -35,7 +35,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     });
 
     var getItem = function () {
-        return "恭喜" + getRandomProduct([{productname:"广州"},{productname:"北京"},{productname:"上海"},{productname:"重庆"},{productname:"南京"},{productname:"深圳"}]) + "网友，获得了" + getRandomProduct([{productname:"30MB流量"},{productname:"20MB流量"},{productname:"10MB流量"},{productname:"100MB流量"},{productname:"20MB流量"},{productname:"5MB流量"}]);
+        return "恭喜" + getRandomProduct([{productname:"广州"},{productname:"北京"},{productname:"上海"},{productname:"重庆"},{productname:"南京"},{productname:"深圳"}]) + "网友，获得了" + getRandomProduct([{productname:"30MB流量"},{productname:"1G流量"},{productname:"10MB流量"},{productname:"100MB流量"},{productname:"20MB流量"},{productname:"5MB流量"}]);
     };
 
     $scope.luckyPeoples = getItem();

@@ -3,7 +3,7 @@
             nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"每周秒杀"}'></top-nav>
     <div class="content-scrollable has-footer">
         <h1 class="title"><img src="views/activity/seckill/title.png"></h1>
-        <div class="notes">
+        <div class="notes" ng-show="seckills.falg">
             <div class="hd">
                 <img style="width: 0.22rem;margin-right: 0.1rem;display: block" src="views/activity/follow/volume-up.png">
             </div>
@@ -32,7 +32,7 @@
         </div>
         <div class="countdown" ng-show="seckills.falg && seckills.recent.status != 2"><div class="label">结束倒计时：</div><timer ng-if="seckills.recent.end_time.time" end-time="{{seckills.recent.end_time.time}}"></timer></div>
         <div class="countdown" ng-show="seckills.falg && seckills.recent.status == 2">您已经买到了，快邀请好友一起来参加吧！</div>
-        <div class="countdown" ng-show="!seckills.falg">秒杀还没有，提前预约提醒参加秒杀！</div>
+        <div class="countdown" ng-show="!seckills.falg">秒杀还没有开始，提前预约提醒参加秒杀！</div>
         <div class="btn-wrap circle">
             <div class="btn" ng-show="seckills.falg && seckills.recent.status != 2" ng-click="buy()" user-tracker="buy">立即抢购</div>
             <div class="btn" ng-show="seckills.falg && seckills.recent.status == 2" ui-sref="inviteCode" user-tracker="invite">邀请好友</div>

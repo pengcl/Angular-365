@@ -24,14 +24,12 @@ appServices.factory("AuthenticationSvc", ['$http', '$q', '$cookieStore', 'UserAg
     service.isLogin = function (callback) {
 
         if (typeof callback === "function") {
-
             //判断userInfo的cookie是否存在
             if ($cookieStore.get('userInfo')) {//userInfo的cookie已经存在
-
                 var userInfo = $cookieStore.get('userInfo');
 
                 //判断是否登录
-                if (userInfo.isLogin) {//已经登录
+                if (userInfo.receiverMobile) {//已经登录
                     return callback(
                         {
                             success: true,

@@ -8,10 +8,38 @@
         </div>
         <div class="tips">已累计签到：<em ng-bind="signInfo.signDaysCount"></em>次<span ng-show="signInfo.isSign == 1">，并免费获得<em>3</em>次转盘机会</span></div>
         <div class="btn-wrap circle" ng-class="{true:'checked',false:''}[signInfo.isSign == 1]">
-            <a class="btn" href="javascript:;" ng-click="sign()" ng-show="signInfo.isSign != 1" user-tracker="sign">立即领取</a>
+            <a class="btn" href="javascript:;" ng-click="sign()" ng-show="signInfo.isSign != 1" user-tracker="sign">签到领流量</a>
             <a class="btn" href="javascript:;" ng-click="sign()" ng-show="signInfo.isSign == 1">本周已签到</a>
         </div>
-        <div class="sign-panel">
+
+        <div class="user-status">
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                    <div class="status-box">
+                        <div class="pure-u-3-5">
+                            <div class="txt"><span class="num" ng-bind="userStatus.giveFlowNum"></span><span>M</span></div>
+                            <div class="txt">当前账户流量</div>
+                        </div>
+                        <div class="pure-u-2-5">
+                            <a class="btn small circle" ui-sref="exchange">去兑换</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-2">
+                    <div class="status-box">
+                        <div class="pure-u-3-5">
+                            <div class="txt">充值买一赠一</div>
+                            <div class="txt">更多流量优惠</div>
+                        </div>
+                        <div class="pure-u-2-5">
+                            <a class="btn small circle" ui-sref="recharge">去购买</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sign-panel" style="display: none">
             <div class="sign-lists owl-carousel owl-theme">
                 <div class="sign-item item">
                     <div class="card checked">

@@ -1,0 +1,33 @@
+<div class="page orderDetail">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的订单"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">售价</label>
+                    <em class="weui-form-preview__value">¥<span ng-bind="order.totalamount | number"></span></em>
+                </div>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">商品</label>
+                    <span class="weui-form-preview__value"><span ng-bind="order.buyermemo"></span></span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">时间</label>
+                    <span class="weui-form-preview__value" ng-bind="order.createtime.time | date:'yyyy-MM-dd HH:mm:ss'"></span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">单号</label>
+                    <span class="weui-form-preview__value" ng-bind="order.orderno"></span>
+                </div>
+            </div>
+            <div class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_default" ng-click="buyNow(order.salesorderid,0);writeLog('BuyPay');">一次性支付</a>
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-click="buyNow(order.salesorderid,2);writeLog('BuyPay');">分期支付</a>
+            </div>
+        </div>
+    </div>
+    <app-dialog></app-dialog>
+</div>

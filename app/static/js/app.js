@@ -19,14 +19,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/member/home');
 
-}]).controller('appController', ['$scope', '$cookieStore', 'UserAgentSvc', 'WxSvc', function ($scope, $cookieStore, UserAgentSvc, WxSvc) {
+}]).controller('appController', ['$scope', '$location', '$cookieStore', 'UserAgentSvc', 'WxSvc', 'UserSvc', function ($scope, $location, $cookieStore, UserAgentSvc, WxSvc, UserSvc) {
 
     $scope.isWx = UserAgentSvc.isWx;
     $scope.activityTag = '365';
 
+    $scope.gh = $location.search().gh;
+
     if ($scope.isWx) {
 
         $scope.openid = WxSvc.getOpenid(window.location.href);
+
+        UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
+            $scope.userInfo = data;
+        });
+
         /*WxSvc.getWxParameter().then(function success(data) {
             wx.config({
                 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -51,7 +58,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 
     $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {//初始化全局控件的状态
 
-        var needLoginPages = ['member'];//不需要登陆的页面
+        var needLoginPages = ['member'];//需要登陆的页面
 
         var needLogin = function (needLoginPages) {//判断该页是否需要登录
             var flag = false;
@@ -91,16 +98,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 
         if (UserAgentSvc.isWx) {
 
-            WxSvc.getWxParameter().then(function success(data) {
-                wx.config({
-                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: data[0].appId, // 必填，公众号的唯一标识
-                    timestamp: data[0].timestamp, // 必填，生成签名的时间戳
-                    nonceStr: data[0].nonceStr, // 必填，生成签名的随机串
-                    signature: data[0].signature,// 必填，签名，见附录1
-                    jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            $timeout(function () {
+                WxSvc.getWxParameter().then(function success(data) {
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data[0].appId, // 必填，公众号的唯一标识
+                        timestamp: data[0].timestamp, // 必填，生成签名的时间戳
+                        nonceStr: data[0].nonceStr, // 必填，生成签名的随机串
+                        signature: data[0].signature,// 必填，签名，见附录1
+                        jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
                 });
-            });
+            }, 600);
         }
     });
 

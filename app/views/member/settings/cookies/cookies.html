@@ -1,0 +1,32 @@
+<div class="page flow">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"Cookies管理"}'></top-nav>
+    <div class="content-scrollable has-nav">
+        <div class="weui-cells__title">Cookies管理</div>
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__bd">
+                    <p>查看 Cookies</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="javascript:;" ng-click="removeCookies()">
+                <div class="weui-cell__bd">
+                    <p>清除 Cookies</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+
+        </div>
+
+        <div class="weui-cells" ng-if="cookiesRemoved">
+            <a class="weui-cell weui-cell_access" ui-sref="signIn">
+                <div class="weui-cell__bd">
+                    <p>重新登录</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+        </div>
+    </div>
+    <app-dialog></app-dialog>
+</div>
