@@ -6,11 +6,16 @@
     background-size: 100% auto;
   }
   h1.title {
-    width: 70%;
-    margin: 0.25rem auto 0.15rem;
+    width: 92%;
+    margin: 0.2rem auto 0.15rem;
     img {
       display: block;
       width: 100%;
+    }
+  }
+  .notes {
+    .bd {
+      color: #000;
     }
   }
   .news {
@@ -36,7 +41,7 @@
     }
   }
   .roulette {
-    margin: 0.15rem 0.2rem;
+    margin: 0.2rem 0.2rem 0.05rem;
     overflow: hidden;
     background-image: url("views/activity/follow/roulette-dot.png");
     background-size: 100% 100%;
@@ -100,11 +105,119 @@
       }
     }
   }
+  .top-tips {
+    background: #ffcb2e;
+    .weui-cell__bd {
+      font-size: 0.14rem;
+    }
+    .btn {
+      padding-left: 0.05rem;
+      padding-right: 0.05rem;
+      box-shadow: 1px 1px 1px #999;
+      &.disabled {
+        background: #ccc;
+      }
+    }
+    a {
+      color: #333;
+      em {
+        color: #df4930;
+        font-style: normal;
+      }
+    }
+  }
+  .user-status {
+    margin: 0 0.1rem 0.1rem;
+    .status-box {
+      margin: 0.05rem;
+      background: #c7d0ff;
+      font-size: 0.12rem;
+      text-align: center;
+      padding: 0.1rem;
+      line-height: 0.2rem;
+      border-radius: 0.06rem;
+      .txt {
+        line-height: 0.2rem;
+        height: 0.2rem;
+        .num {
+          font-size: 0.16rem;
+        }
+        span {
+          display: inline-block;
+          vertical-align: baseline;
+        }
+        &:first-child {
+          color: #000;
+        }
+        &:last-child {
+          color: #df4930;
+        }
+      }
+      .btn {
+        line-height: 0.2rem;
+        margin-top: 0.07rem;
+        background: none;
+        border: 1px solid #df4930;
+        font-size: 0.12rem;
+        color: #df4930;
+      }
+    }
+  }
+  .weui-cells__tips {
+    color: #fff;
+    text-align: right;
+    padding-right: 0.3rem;
+    margin-top: -0.1rem;
+  }
+  .hots {
+    .tit {
+      width: 36%;
+      margin: 0 auto 0.1rem;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+    .carousel-item {
+      background: #fff;
+      .img {
+        .img-box {
+          margin: 0.2rem;
+        }
+      }
+    }
+    .owl-nav {
+      .owl-prev, .owl-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .owl-prev {
+        left: 0;
+      }
+      .owl-next {
+        right: 0;
+      }
+    }
+    &.rule-list {
+      .rule-tit {
+        color: #999;
+        &:before {
+          left: 0;
+          background: #999 !important;
+        }
+        &:after {
+          right: 0;
+          background: #999 !important;
+        }
+      }
+    }
+  }
   .roulette-tips {
     color: #fff;
     text-align: center;
     font-size: 0.12rem;
-    margin: -0.1rem 0.3rem 0;
+    margin: 0.15rem 0.3rem 0;
     a {
       color: #fff;
       text-decoration: none;

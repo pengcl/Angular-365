@@ -10,6 +10,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             controller: "signInController"
         });
 }]).controller('signInController', ['$scope', '$state', '$interval', '$cookieStore', '$location', 'AuthenticationSvc', 'UserSvc', 'ActiveCodeSvc', function ($scope, $state, $interval, $cookieStore, $location, AuthenticationSvc, UserSvc, ActiveCodeSvc) {
+
+    if(!$scope.openid){
+        window.location.reload();
+    }
+
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
         $scope.userInfo = data;
     });

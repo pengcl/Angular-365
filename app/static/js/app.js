@@ -67,6 +67,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     $rootScope.$on('$locationChangeSuccess', function () {
         $rootScope.location = window.location.href;
 
+        if(!$rootScope.openid){
+
+        }
+
         if (UserAgentSvc.isWx) {
 
             $timeout(function () {

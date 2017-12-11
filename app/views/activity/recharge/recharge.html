@@ -65,7 +65,7 @@
                          ng-show="item.stock && item.sortNo >= 30">
                         <div class="item-box"
                              ng-click="selectedFlowProd(item.stock,item,true,flowList.area_operator,$event);"
-                             ng-class="{true:'active',false:''}[item === flowProduct]" user-tracker="selectedFlowProd">
+                             ng-class="{true:'active',false:''}[item === flowProduct]" user-tracker="{{'selectedFlowProd' + item.sortNo + 'M'}}">
                             <div class="title" ng-bind="item.productName"></div>
                             <div class="disc"><span ng-bind="item.regionProducts | flowSalesPrice | number : 2"></span>元
                             </div>
@@ -143,7 +143,7 @@
                     <div class="list-item pure-u-1-3" ng-repeat="item in feeList.data | limitTo : feeLimitTo"
                          ng-show="item.stock">
                         <div class="item-box" ng-click="selectedFeeProd(item.stock,item,true,$event);"
-                             ng-class="{true:'active',false:''}[item === feeProduct]" user-tracker="selectedFeeProd">
+                             ng-class="{true:'active',false:''}[item === feeProduct]" user-tracker="{{'selectedFeeProd' + item.sortNo + 'Y'}}" user-tracker="selectedFeeProd">
                             <div class="title" ng-bind="item.productName"></div>
                             <div class="disc"><span ng-bind="item.regionProducts | flowSalesPrice | number : 2"></span>元
                             </div>
@@ -213,7 +213,7 @@
 
         </form>
     </div>
-    <div class="weui-tabbar" ng-show="!isWx" ng-include="'views/include/footerNav/footerNav.html'"></div>
+    <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
     <app-footer-nav page-active="recharge"></app-footer-nav>
     <app-dialog></app-dialog>
 </div>

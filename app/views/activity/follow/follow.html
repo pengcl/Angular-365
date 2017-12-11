@@ -1,15 +1,65 @@
 <div class="page follow">
     <top-nav
             nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"幸运大转盘"}'></top-nav>
-    <div class="content-scrollable has-footer">
+    <div class="top-tips weui-cells" style="position: absolute;top: 0;width: 100%;margin-top: 0;z-index: 999">
+        <a class="weui-cell" href="javascript:;">
+            <div class="weui-cell__hd"><img class="circle border" ng-src="{{userInfo.weiXinData.headimgurl}}" alt=""
+                                            style="width:30px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+                <p>已累计签到<em ng-bind="signInfo.signDaysCount"></em>次</p>
+            </div>
+            <div class="weui-cell__ft">
+                <span ng-show="signInfo.isSign == 1" class="btn small radius disabled ng-hide">本周已签到</span><span
+                    ng-show="signInfo.isSign != 1" ng-click="sign()" class="btn small radius ng-hide">签到领流量+10M</span>
+            </div>
+        </a>
+    </div>
+    <div class="content-scrollable has-nav has-footer">
+        <!--<h1 class="title"><img src="views/activity/follow/title.png"></h1>-->
+        <div class="user-status">
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                    <div class="status-box">
+                        <div class="pure-u-3-5">
+                            <div class="txt">当前账户流量</div>
+                            <div class="txt"><span class="num" ng-bind="userStatus.giveFlowNum"></span><span>M</span>
+                            </div>
+                        </div>
+                        <div class="pure-u-2-5">
+                            <a class="btn small circle" ui-sref="exchange">提取流量</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-2">
+                    <div class="status-box">
+                        <div class="pure-u-3-5">
+                            <div class="txt">流量不够用？</div>
+                            <div class="txt">流量买一送一</div>
+                        </div>
+                        <div class="pure-u-2-5">
+                            <a class="btn small circle" ui-sref="recharge">充流量</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h1 class="title"><img src="views/activity/follow/title.png"></h1>
+
         <div class="notes">
             <div class="hd">
-                <img style="width: 0.22rem;margin-right: 0.1rem;display: block" src="views/activity/follow/volume-up.png">
+                <img style="width: 0.22rem;margin-right: 0.1rem;display: block"
+                     src="views/activity/follow/volume-up.png">
             </div>
             <div class="bd" ng-bind="luckyPeoples" ng-show="luckyPeoples"></div>
             <div class="ft"></div>
         </div>
+
+        <div class="roulette-tips pure-g">
+            <div class="txt-l pure-u-1-2">剩余转盘机会：<span ng-bind="userInfo.turntableNum"></span>次</div>
+            <div class="txt-r pure-u-1-2"><a ui-sref="invite">邀请好友获取更多次数 ></a></div>
+        </div>
+
         <div class="roulette">
             <div class="roulette-box">
                 <ul class="roulette-lists pure-g">
@@ -103,14 +153,19 @@
                 </ul>
             </div>
         </div>
-        <div class="roulette-tips pure-g">
-            <div class="txt-l pure-u-1-2">剩余转盘机会：<span ng-bind="userInfo.turntableNum"></span>次</div>
-            <div class="txt-r pure-u-1-2"><a ui-sref="invite">邀请好友获取更多次数 ></a></div>
-        </div>
 
-        <div class="rule-list">
-            <div class="rule-tit"><span>转盘说明</span></div>
-            <dl class="rule-txt">
+        <p class="weui-cells__tips" ng-click="showRule();">活动规则 ></p>
+
+        <div class="hots rule-list">
+            <div class="tit"><img src="views/activity/follow/hot.png"></div>
+            <div owl-carousel class="owl-carousel owl-theme">
+                <div carousel-item class="carousel-item item" ng-repeat="singlePhone in singlePhones | limitTo : 4">
+                    <a class="img-box" href="{{imageurl}}">
+                        <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{singlePhone.imagepath}}">
+                    </a>
+                </div>
+            </div>
+            <!--<dl class="rule-txt">
                 <dt>1</dt>
                 <dd><p class="txt">每周在“签到”页面中签到能获赠3次转盘机会。</p></dd>
             </dl>
@@ -125,10 +180,10 @@
                 <dd>
                     <p class="txt">活动最终解释权由365领流量拥有。</p>
                 </dd>
-            </dl>
+            </dl>-->
         </div>
 
-        <div ng-include="'views/include/profit/profit.html'"></div>
+        <!--<div ng-include="'views/include/profit/profit.html'"></div>-->
     </div>
     <div class="weui-tabbar" ng-include="'views/include/footerNav/footerNav.html'"></div>
     <app-dialog></app-dialog>
@@ -141,78 +196,101 @@
                 <div class="award-dialog">
                     <div class="img">
                         <img class="img-bg" src="views/activity/follow/awards-bg.png">
-                        <img class="img-prize" ng-src="http://www.yfq.cn:8899/fileserver/medias/{{prize.productImgUrl}}">
+                        <img class="img-prize"
+                             ng-src="http://www.yfq.cn:8899/fileserver/medias/{{prize.productImgUrl}}">
                     </div>
                     <div class="txt" style="color: #fff;margin-top: -0.95rem">
-                        <p ng-show="prize.producttype == 'flow'" style="color: #ffdf4e">恭喜您抽中了{{prize.productname}}！已放入您的流量余额中，可到个人中心进行兑换。</p>
-                        <p ng-show="prize.producttype == 'flowCoupon'" style="color: #ffdf4e">恭喜您抽中了{{prize.productname}}！已放入您的卡包中，可进入个人中心卡包中查看。</p>
-                        <p ng-show="prize.producttype == 'mobileCoupon'" style="color: #ffdf4e">恭喜您抽中了{{prize.productname}}！已放入您的卡包中，可进入个人中心卡包中查看。</p>
-                        <p ng-show="prize.producttype == 'financialProducts'" style="color: #ffdf4e">恭喜您抽中“米庄新人688元大礼包”！机会难得，赶紧领取吧！</p>
-                        <p ng-show="prize.producttype == 'videoCard'" style="color: #ffdf4e">恭喜您抽中了一张{{prize.productname}}！机会难得，赶紧去领取吧！</p>
+                        <p ng-show="prize.producttype == 'flow'" style="color: #ffdf4e">
+                            恭喜您抽中了{{prize.productname}}！已放入您的流量余额中，可到个人中心进行兑换。</p>
+                        <p ng-show="prize.producttype == 'flowCoupon'" style="color: #ffdf4e">
+                            恭喜您抽中了{{prize.productname}}！已放入您的卡包中，可进入个人中心卡包中查看。</p>
+                        <p ng-show="prize.producttype == 'mobileCoupon'" style="color: #ffdf4e">
+                            恭喜您抽中了{{prize.productname}}！已放入您的卡包中，可进入个人中心卡包中查看。</p>
+                        <p ng-show="prize.producttype == 'financialProducts'" style="color: #ffdf4e">
+                            恭喜您抽中“米庄新人688元大礼包”！机会难得，赶紧领取吧！</p>
+                        <p ng-show="prize.producttype == 'videoCard'" style="color: #ffdf4e">
+                            恭喜您抽中了一张{{prize.productname}}！机会难得，赶紧去领取吧！</p>
                     </div>
 
                     <!-- 抽到流量 -->
                     <div ng-show="prize.producttype == 'flow'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
-                            <a class="btn" href="javascript:;" ng-click="success('http://app.ljker.com/member/exchange')" user-tracker="flow">去兑换</a>
+                            <a class="btn" href="javascript:;"
+                               ng-click="success('http://app.ljker.com/member/exchange')" user-tracker="flow">去兑换</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="continue()" user-tracker="continue">继续抽奖</a>
+                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="continue()"
+                               user-tracker="continue">继续抽奖</a>
                             <!-- 无抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="cancel">返回</a>
                         </div>
                     </div>
 
                     <!-- 抽到流量优惠券 -->
                     <div ng-show="prize.producttype == 'flowCoupon'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
-                            <a class="btn" href="javascript:;" ng-click="success('http://app.ljker.com/member/couponHome')" user-tracker="flowCoupon">去查看</a>
+                            <a class="btn" href="javascript:;"
+                               ng-click="success('http://app.ljker.com/member/couponHome')" user-tracker="flowCoupon">去查看</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="continue()" user-tracker="continue">继续抽奖</a>
+                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="continue()"
+                               user-tracker="continue">继续抽奖</a>
                             <!-- 无抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="cancel">返回</a>
                         </div>
                     </div>
 
                     <!-- 抽到手机优惠券 -->
                     <div ng-show="prize.producttype == 'mobileCoupon'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
-                            <a class="btn" href="javascript:;" ng-click="success('http://app.ljker.com/member/couponHome')" user-tracker="mobileCoupon">去查看</a>
+                            <a class="btn" href="javascript:;"
+                               ng-click="success('http://app.ljker.com/member/couponHome')" user-tracker="mobileCoupon">去查看</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="continue()" user-tracker="continue">继续抽奖</a>
+                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="continue()"
+                               user-tracker="continue">继续抽奖</a>
                             <!-- 无抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="cancel">返回</a>
                         </div>
                     </div>
 
                     <!-- 抽到理财产品包 -->
                     <div ng-show="prize.producttype == 'financialProducts'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
-                            <a class="btn" href="javascript:;" ng-click="success('https://h5.mizlicai.com/#/share-register')" user-tracker="financialProducts">去领取</a>
+                            <a class="btn" href="javascript:;"
+                               ng-click="success('https://h5.mizlicai.com/#/share-register')"
+                               user-tracker="financialProducts">去领取</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="giveUp">忍痛放弃</a>
+                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="giveUp">忍痛放弃</a>
                             <!-- 无抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="cancel">返回</a>
                         </div>
                     </div>
 
                     <!-- 抽到手机维修礼包 -->
                     <div ng-show="prize.producttype == 'repairCoupon'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
-                            <a class="btn" href="javascript:;" ng-click="success('http://m.51xiuj.com/coupon/info?baidu-1generalize-info=&channe_key=5e3e509cfb824ca9a4c8059073d1ce83&from=singlemessage&isappinstalled=0')" user-tracker="repairCoupon">去领取</a>
+                            <a class="btn" href="javascript:;"
+                               ng-click="success('http://m.51xiuj.com/coupon/info?baidu-1generalize-info=&channe_key=5e3e509cfb824ca9a4c8059073d1ce83&from=singlemessage&isappinstalled=0')"
+                               user-tracker="repairCoupon">去领取</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="giveUp">忍痛放弃</a>
+                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="giveUp">忍痛放弃</a>
                             <!-- 无抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="cancel">返回</a>
                         </div>
                     </div>
 
@@ -223,9 +301,11 @@
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="giveUp">忍痛放弃</a>
+                            <a ng-show="userInfo.turntableNum > 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="giveUp">忍痛放弃</a>
                             <!-- 无抽奖次数 -->
-                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()" user-tracker="cancel">返回</a>
+                            <a ng-show="userInfo.turntableNum <= 0" class="btn" href="javascript:;" ng-click="cancel()"
+                               user-tracker="cancel">返回</a>
                         </div>
                     </div>
                 </div>

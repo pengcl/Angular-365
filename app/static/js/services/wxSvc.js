@@ -19,6 +19,10 @@ appServices.factory('WxSvc', ['$rootScope', '$state', '$q', '$http', '$timeout',
             return false;
         }
 
+        if ($location.path() === '/activity/recharge') {
+            return false;
+        }
+
         if ($location.search().openid) {
             $cookieStore.put('openid', $location.search().openid);
             return $location.search().openid;

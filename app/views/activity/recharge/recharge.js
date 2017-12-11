@@ -26,7 +26,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         title: '流量特惠充值，买一送一啦！',
         desc: '流量话费充值多优惠，更有多重好礼！尽在365领流量',
         link: 'http://app.ljker.com/activity/recharge',
-        imgUrl: 'http://app.ljker.com/views/activity/follow/shareImg.jpg'
+        imgUrl: 'http://app.ljker.com/views/activity/recharge/nativeShare.jpg'
     });
 
     $scope.productType = 'flow';
@@ -258,7 +258,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     //只有输入手机号码才记录到闭环
     $scope.inputMobile = function (mobile) {
-        if (mobile == undefined || mobile == "" || mobile.length <= 10) return;
+        console.log(mobile);
+        if (mobile == undefined || mobile == "" || mobile.length <= 10) {
+        } else {
+            writebdLog(appName + '_' + $scope.state.name, '_' + 'inputMobile');
+        }
     };
 
     $scope.setProductType = function (type) {

@@ -66,37 +66,4 @@
       }
     }
   }
-  .user-status {
-    margin: 0.1rem;
-    .status-box {
-      margin: 0.05rem;
-      background: #6d76ab;
-      font-size: 0.12rem;
-      text-align: center;
-      padding: 0.1rem;
-      line-height: 0.2rem;
-      border-radius: 0.06rem;
-      .txt {
-        line-height: 0.2rem;
-        height: 0.2rem;
-        .num {
-          font-size: 0.16rem;
-        }
-        span {
-          display: inline-block;
-          vertical-align: baseline;
-        }
-        &:first-child {
-          color: #fff;
-        }
-      }
-      .btn {
-        line-height: 0.2rem;
-        margin-top: 0.07rem;
-        background: none;
-        border: 1px solid #fff;
-        font-size: 0.12rem;
-      }
-    }
-  }
 }

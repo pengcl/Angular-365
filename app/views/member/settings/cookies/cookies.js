@@ -10,9 +10,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             controller: "cookiesController"
         });
 }]).controller('cookiesController', ['$scope', '$cookieStore', 'UserSvc', function ($scope, $cookieStore, UserSvc, openid) {
+
+    console.log($cookieStore.get('openid'));
+
     $scope.removeCookies = function () {
-        $cookieStore.remove('openid');
-        $cookieStore.remove('userInfo');
+        clearCookie();
 
         $scope.cookiesRemoved = false;
         $scope.dialog.open({
@@ -24,7 +26,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
         $scope.$on('appDialog', function (e, eventId) {
             if (eventId === 'removeCookies') {
-                location.reload();
+                //location.reload();
                 $scope.cookiesRemoved = true;
             }
         })

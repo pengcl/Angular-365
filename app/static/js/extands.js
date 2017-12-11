@@ -113,7 +113,9 @@ function getRandomName() {
     var lid = Math.round(Math.random() * 1);
     return firstNames[fid] + lastNames[lid];
 }
+
 var baseTime = 1;
+
 function getRanDomTime() {
     var addTime = Math.round(Math.random() * 1);
     baseTime = baseTime + addTime;
@@ -141,6 +143,14 @@ function getRandomReceiverPhone() {
 function getRandomProduct(products) {
     var index = Math.round(Math.random() * 5);
     return products[index].productname;
+}
+
+function clearCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+        for (var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
 }
 
 $(document).ready(function () {
