@@ -44,9 +44,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         if ($scope.order.product.productname == '话费充值') {
             $scope.rechargeDetails = $scope.order.flowPrice.productName + "话费";
             $scope.getCoupon = getFeeCoupon($scope.order.salesOrder.amount, 30);
+            writebdLog(appName + '_' + $rootScope.state.name, '_ycxzfcgfee');
         } else {
             $scope.rechargeDetails = $scope.order.flowPrice.productName + $scope.order.flowPrice.region + "流量";
             $scope.getCoupon = getFlowCoupon($scope.order.salesOrder.paidamount, 30);
+            writebdLog(appName + '_' + $rootScope.state.name, '_ycxzfcgflow');
         }
     });
 

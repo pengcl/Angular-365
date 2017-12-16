@@ -1,10 +1,10 @@
 <div class="page home">
     <top-nav nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"我的账户"}'></top-nav>
-    <div class="content-scrollable">
+    <div class="content-scrollable has-footer">
         <div class="page-hd">
             <div class="avatar">
                 <img ng-show="userInfo.weiXinData.headimgurl" ng-src="{{userInfo.weiXinData.headimgurl}}">
-                <img ng-show="!userInfo.weiXinData.headimgurl" ng-src="http://app.ljker.com/static/images/avatar.png">
+                <img ng-show="!userInfo.weiXinData.headimgurl" ng-src="static/images/avatar.png">
             </div>
             <div class="name" ng-bind="userInfo.weiXinData.nickname"></div>
         </div>

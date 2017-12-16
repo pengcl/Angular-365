@@ -17,7 +17,7 @@
         </div>
 
         <div class="nav-group right">
-        <span class="nav-item" style="width: 0.7rem;font-size: 0.12rem" ng-if="navItem.rightItem==='watch'" ng-click="showWatch(true)">
+        <span class="nav-item" user-tracker="showWatch" style="width: 0.7rem;font-size: 0.12rem" ng-if="userInfo.weiXinData.subscribe && navItem.rightItem==='watch' && userInfo.weiXinData.subscribe != 1" ng-click="showWatch(true)">
             收藏关注
         </span>
             <span class="nav-item" ng-if="navItem.rightItem==='share'" ng-click="share.open(true)">

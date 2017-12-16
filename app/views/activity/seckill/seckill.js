@@ -37,8 +37,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     ShareSvc.wxShare({
         title: '周三秒杀，超值优惠！',
         desc: '秒杀活动的产品为限量供应，先到先得！',
-        link: 'http://app.ljker.com/activity/seckill',
-        imgUrl: 'http://app.ljker.com/views/activity/seckill/shareImg.jpg'
+        link: 'http://app.danius.cn/activity/seckill',
+        imgUrl: 'http://app.danius.cn/views/activity/seckill/shareImg.jpg'
     });
 
     $http.get(apiConfig.apiHost + '/activity/getQgProduct.ht?openId=' + $scope.openid).success(function (data) {

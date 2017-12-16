@@ -15,7 +15,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     var index = 0;
     var prizeNum = 3;
 
-    if(!$scope.openid){
+    if (!$scope.openid) {
         window.location.reload();
     }
 
@@ -37,8 +37,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     ShareSvc.wxShare({
         title: '关注有礼，流量送不停！',
         desc: '关注有礼，流量送不停，邀请好友一起来摇奖吧！',
-        link: 'http://app.ljker.com/activity/follow',
-        imgUrl: 'http://app.ljker.com/views/activity/follow/shareImg.jpg'
+        link: 'http://app.danius.cn/activity/follow',
+        imgUrl: 'http://app.danius.cn/views/activity/follow/shareImg.jpg'
     });
 
     $scope.award = {
@@ -132,7 +132,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         });
         $http.get(apiConfig.apiHost + "/member/getSignInfo.ht?custId=" + $scope.userInfo.memberId).success(function (data, status, headers, config) {//获取抽中物品记录
             $scope.signInfo = angular.fromJson(data)[0];
-            console.log($scope.signInfo);
 
         }).error(function (error) {
             console.log(error);
@@ -143,7 +142,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     $http.get(apiConfig.apiHost + "/product/getIndexImage.ht").success(function (data, status, headers, config) {//获取抽中物品记录
         var result = angular.fromJson(data);
         $scope.singlePhones = result;
-        console.log($scope.singlePhones);
 
     }).error(function (error) {
         console.log(error);
@@ -166,6 +164,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             if (result.code == 0) {
                 $scope.signInfo.signDaysCount = $scope.signInfo.signDaysCount + 1;
                 $scope.signInfo.isSign = 1;
+                $scope.userStatus.giveFlowNum = $scope.userStatus.giveFlowNum + 10;
             }
             $scope.dialog.open({
                 show: true,

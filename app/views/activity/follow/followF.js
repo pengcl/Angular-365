@@ -30,8 +30,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     ShareSvc.wxShare({
         title: '关注有礼，流量送不停！',
         desc: '关注有礼，流量送不停，邀请好友一起来摇奖吧！',
-        link: 'http://app.ljker.com/activity/follow',
-        imgUrl: 'http://app.ljker.com/views/activity/follow/shareImg.jpg'
+        link: 'http://app.danius.cn/activity/follow',
+        imgUrl: 'http://app.danius.cn/views/activity/follow/shareImg.jpg'
     });
 
     var getItem = function () {

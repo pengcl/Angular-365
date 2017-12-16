@@ -14,8 +14,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     ShareSvc.wxShare({
         title: '每周来签到，5元拿到手',
         desc: '手机购物券，购机抵扣5元，最多可叠加抵扣100元',
-        link: 'http://app.ljker.com/activity/sign',
-        imgUrl: 'http://app.ljker.com/views/activity/sign/shareImg.jpg'
+        link: 'http://app.danius.cn/activity/sign',
+        imgUrl: 'http://app.danius.cn/views/activity/sign/shareImg.jpg'
     });
 
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息

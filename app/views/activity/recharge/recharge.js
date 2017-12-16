@@ -25,8 +25,12 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     ShareSvc.wxShare({
         title: '流量特惠充值，买一送一啦！',
         desc: '流量话费充值多优惠，更有多重好礼！尽在365领流量',
-        link: 'http://app.ljker.com/activity/recharge',
-        imgUrl: 'http://app.ljker.com/views/activity/recharge/nativeShare.jpg'
+        link: 'http://app.danius.cn/activity/recharge',
+        imgUrl: 'http://app.danius.cn/views/activity/recharge/nativeShare.jpg'
+    });
+
+    UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
+        $scope.userInfo = data;
     });
 
     $scope.productType = 'flow';
@@ -39,23 +43,55 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     };
 
     $scope.getFlowMore = function (checked) {
-
+        if (!checked) {
+            $scope.dialog.open({
+                show: true,
+                title: "系统提示",
+                body: '请输入您的手机号码！',
+                buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+            });
+            return false;
+        }
         $scope.flowLimitTo = 100;
     };
 
     $scope.getFeeMore = function (checked) {
-
+        if (!checked) {
+            $scope.dialog.open({
+                show: true,
+                title: "系统提示",
+                body: '请输入您的手机号码！',
+                buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+            });
+            return false;
+        }
         $scope.feeLimitTo = 100;
     };
 
     $scope.getFlowLess = function (checked) {
-
+        if (!checked) {
+            $scope.dialog.open({
+                show: true,
+                title: "系统提示",
+                body: '请输入您的手机号码！',
+                buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+            });
+            return false;
+        }
         $scope.flowLimitTo = 5;
         $scope.feeLimitTo = 5;
     };
 
     $scope.getFeeLess = function (checked) {
-
+        if (!checked) {
+            $scope.dialog.open({
+                show: true,
+                title: "系统提示",
+                body: '请输入您的手机号码！',
+                buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+            });
+            return false;
+        }
         $scope.feeLimitTo = 5;
         $scope.flowLimitTo = 5;
     };
@@ -215,7 +251,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         }
         if (regionProduct) {
 
-            PaySvc.flowPay($scope.mobile, product.productId, regionProduct.productFlowPriceId, $scope.flowList.area_operator, 'recharge', $scope.gh, encodeURIComponent('http://app.ljker.com/success?mobile=' + $scope.mobile + '&returnUrl=' + encodeURIComponent(window.location.href)), coupons, $scope.referrerId, $scope.category + $scope.productType).then(function success(data) {
+            PaySvc.flowPay($scope.mobile, product.productId, regionProduct.productFlowPriceId, $scope.flowList.area_operator, 'recharge', $scope.gh, encodeURIComponent('http://app.danius.cn/success?mobile=' + $scope.mobile + '&returnUrl=' + encodeURIComponent(window.location.href)), coupons, $scope.referrerId, $scope.category + $scope.productType).then(function success(data) {
                 $scope.toast.show = false;
                 if (data.result) {
                     window.location.href = data.payUrl;
@@ -258,7 +294,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
     //只有输入手机号码才记录到闭环
     $scope.inputMobile = function (mobile) {
-        console.log(mobile);
         if (mobile == undefined || mobile == "" || mobile.length <= 10) {
         } else {
             writebdLog(appName + '_' + $scope.state.name, '_' + 'inputMobile');
@@ -392,9 +427,9 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                     });
                 } else {
                     $scope.flowList = rebuildData(tempFlowList, false);
-                    $scope.selectedFlowProd(true, $scope.flowList.data[0], true);
+                    //$scope.selectedFlowProd(true, $scope.flowList.data[0], true);
                     $scope.feeList = rebuildData(tempFeeList, false);
-                    $scope.selectedFeeProd(true, $scope.feeList.data[0], true);
+                    //$scope.selectedFeeProd(true, $scope.feeList.data[0], true);
                 }
             });
         });
@@ -416,7 +451,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             }
             $scope.mobileView = result.join("");
             $scope.mobile = value;
-            $cookieStore.put('rechargeMobile', $scope.mobileView);
         } else {
             $scope.mobile = "";
         }
@@ -427,10 +461,13 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         $scope.couponList = 0;
         $scope.flowCouponLength = 0;
         $scope.feeCouponLength = 0;
+        $scope.flowProduct = "";
+        $scope.feeProduct = "";
 
         $timeout(function () {
             if (n !== undefined && n.length == 11 && $scope.salesForm.mobile.$valid) {
                 $scope.mobileValid = $scope.mobile;
+                $cookieStore.put('rechargeMobile', $scope.mobileValid);
             } else {
                 $scope.mobileValid = false;
             }

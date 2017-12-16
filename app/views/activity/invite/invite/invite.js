@@ -22,8 +22,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     ShareSvc.wxShare({
         title: '快来领免费流量！',
         desc: '还有各种抽奖和秒杀优惠，快来试试吧！',
-        link: 'http://app.ljker.com/activity/invite/code?recommender=' + $scope.openid,
-        imgUrl: 'http://app.ljker.com/views/activity/invite/shareImg.jpg',
+        link: 'http://app.danius.cn/activity/invite/code?recommender=' + $scope.openid,
+        imgUrl: 'http://app.danius.cn/views/activity/invite/shareImg.jpg',
         shareSuccess: function (data) {
             $scope.$apply($scope.shareMaskShow = false);
         },

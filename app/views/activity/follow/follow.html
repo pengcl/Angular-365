@@ -160,7 +160,7 @@
             <div class="tit"><img src="views/activity/follow/hot.png"></div>
             <div owl-carousel class="owl-carousel owl-theme">
                 <div carousel-item class="carousel-item item" ng-repeat="singlePhone in singlePhones | limitTo : 4">
-                    <a class="img-box" href="{{imageurl}}">
+                    <a class="img-box" href="{{singlePhone.imageurl}}">
                         <img ng-src="http://www.yfq.cn:8899/fileserver/medias/{{singlePhone.imagepath}}">
                     </a>
                 </div>
@@ -216,7 +216,7 @@
                     <div ng-show="prize.producttype == 'flow'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
                             <a class="btn" href="javascript:;"
-                               ng-click="success('http://app.ljker.com/member/exchange')" user-tracker="flow">去兑换</a>
+                               ng-click="success('http://app.danius.cn/member/exchange')" user-tracker="flow">去兑换</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
@@ -232,7 +232,7 @@
                     <div ng-show="prize.producttype == 'flowCoupon'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
                             <a class="btn" href="javascript:;"
-                               ng-click="success('http://app.ljker.com/member/couponHome')" user-tracker="flowCoupon">去查看</a>
+                               ng-click="success('http://app.danius.cn/member/couponHome')" user-tracker="flowCoupon">去查看</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->
@@ -248,7 +248,7 @@
                     <div ng-show="prize.producttype == 'mobileCoupon'" class="btn-group pure-g">
                         <div class="pure-u-1-2">
                             <a class="btn" href="javascript:;"
-                               ng-click="success('http://app.ljker.com/member/couponHome')" user-tracker="mobileCoupon">去查看</a>
+                               ng-click="success('http://app.danius.cn/member/couponHome')" user-tracker="mobileCoupon">去查看</a>
                         </div>
                         <div class="pure-u-1-2">
                             <!-- 还有抽奖次数 -->

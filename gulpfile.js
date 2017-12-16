@@ -38,7 +38,7 @@ var config = {
         json: 'rev/json/'
     },
     api: {
-        prodApi: "http://app.ljker.com/api",
+        prodApi: "http://app.danius.cn/api",
         testApi: "http://test.yfq.cn/api"
     }
 };

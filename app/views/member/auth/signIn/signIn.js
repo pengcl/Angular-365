@@ -11,8 +11,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         });
 }]).controller('signInController', ['$scope', '$state', '$interval', '$cookieStore', '$location', 'AuthenticationSvc', 'UserSvc', 'ActiveCodeSvc', function ($scope, $state, $interval, $cookieStore, $location, AuthenticationSvc, UserSvc, ActiveCodeSvc) {
 
-    if(!$scope.openid){
-        window.location.reload();
+    if($scope.isWx){
+        if(!$scope.openid){
+            window.location.reload();
+        }
     }
 
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
@@ -51,10 +53,12 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         });
     };
 
-    $scope.signIn = function (mobile, code) {
-        ActiveCodeSvc.checkMobileCode(mobile, code).then(function success(data) {
+    $scope.signIn = function (mobile, code) {//登录
+        ActiveCodeSvc.checkMobileCode(mobile, code).then(function success(data) {//检查验证码
+            //alert(data);
             if (data) {
-                AuthenticationSvc.binding($scope.openid, mobile).then(function success(data) {
+                AuthenticationSvc.binding($scope.openid, mobile).then(function success(data) {//登录，绑定手机号
+                    //alert(data);
                     if (data.resultCode === 1) {
                         $scope.userInfo = data;
                         /*$scope.userInfo.isLogin = true;*/

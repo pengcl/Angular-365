@@ -13,9 +13,9 @@ app.directive("owlCarousel", ['$http', '$compile', function ($http, $compile) {
         link: function (scope, element, attrs) {
             if (scope.$last) {
                 $(element).parent().owlCarousel({
+                    loop: true,
                     nav: false,
                     autoplay: true,
-                    autoplaySpeed: 3000,
                     items: 1
                 });
             }

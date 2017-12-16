@@ -19,9 +19,13 @@ appServices.factory('WxSvc', ['$rootScope', '$state', '$q', '$http', '$timeout',
             return false;
         }
 
-        if ($location.path() === '/activity/recharge') {
+        if ($location.path() === '/activity/watch') {
             return false;
         }
+
+        /*if ($location.path() === '/activity/recharge') {
+            return false;
+        }*/
 
         if ($location.search().openid) {
             $cookieStore.put('openid', $location.search().openid);
@@ -33,7 +37,7 @@ appServices.factory('WxSvc', ['$rootScope', '$state', '$q', '$http', '$timeout',
         }
 
         $timeout(function () {
-            window.location.href = "http://m.ljker.com/member/auth.ht?authType=" + $rootScope.state.name + "&platform=365flow&callBackUrl=" + encodeURI(callBackUrl);
+            window.location.href = "http://m.danius.cn/member/auth.ht?authType=" + $rootScope.state.name + "&platform=365flow&callBackUrl=" + encodeURI(callBackUrl);
         });
     };
 

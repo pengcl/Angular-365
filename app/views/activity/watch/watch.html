@@ -1,0 +1,17 @@
+<div class="page aWatch">
+    <top-nav
+            nav-item='{"visibility":false,"menu":false,"back":true,"share":false,"comment":false,"class":"black","title":"365领红包"}'></top-nav>
+    <div class="content-scrollable">
+        <div class="nlogo img-box">
+            <img src="views/activity/watch/logo.png">
+        </div>
+        <div class="title img-box">
+            <img src="views/activity/watch/title.png">
+        </div>
+        <div class="red-bag img-box" ng-click="open(step)" user-tracker="{{step}}">
+            <img class="" ng-class="{true:'bounce animated',false:''}[step == 0]" ng-show="step == 0" src="views/activity/watch/red.png">
+            <img class="" ng-class="{true:'flipInY animated',false:''}[step == 1]" ng-show="step == 1" src="views/activity/watch/red2.png">
+            <img class="" ng-class="{true:'flipInY animated',false:''}[step == 2]" ng-show="step == 2" src="views/activity/watch/red3.png">
+        </div>
+    </div>
+</div>
