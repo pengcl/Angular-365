@@ -130,13 +130,13 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         }
 
         if ($scope.couponList) {
-            if (area_operator === "广东联通") {
+            if (area_operator.indexOf('联通') !== -1) {
                 if (product.flowRate >= 500 && $scope.couponList.length >= 1) {
                     $scope.flowCoupons = $scope.couponList[0].couponNo;
                     $scope.flowCouponLength = 1;
                 }
 
-                if (product.flowRate > 3000 && $scope.couponList.length >= 2) {
+                if (product.flowRate >= 3000 && $scope.couponList.length >= 2) {
                     $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo;
                     $scope.flowCouponLength = 2;
                 }
@@ -154,10 +154,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                     $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo;
                     $scope.flowCouponLength = 3;
                 }
-                if (product.flowRate >= 4000 && $scope.couponList.length >= 5) {
+                /*if (product.flowRate >= 4000 && $scope.couponList.length >= 5) {
                     $scope.flowCoupons = $scope.couponList[0].couponNo + "," + $scope.couponList[1].couponNo + "," + $scope.couponList[2].couponNo + "," + $scope.couponList[3].couponNo + "," + $scope.couponList[4].couponNo;
                     $scope.flowCouponLength = 5;
-                }
+                }*/
             }
         } else {
             $scope.flowCoupons = "";
@@ -372,10 +372,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                                     var _flowIndex = getDefault($scope.flowList.data);
 
                                     if (_flowIndex > 6) {
-                                        $scope.selectedFlowProd(true, $scope.flowList.data[_flowIndex], false);
+                                        $scope.selectedFlowProd(true, $scope.flowList.data[_flowIndex], false,  $scope.flowList.area_operator);
                                     } else {
                                         if (_flowIndex !== "") {
-                                            $scope.selectedFlowProd(true, $scope.flowList.data[_flowIndex], true);
+                                            $scope.selectedFlowProd(true, $scope.flowList.data[_flowIndex], true,  $scope.flowList.area_operator);
                                         }
                                     }
                                 });

@@ -9,11 +9,17 @@
                     <span ng-bind="errorStatus" ng-if="errorStatus!='server' && errorStatus!='401'"></span>
                     <span ng-bind="errorData.title" ng-if="errorStatus=='server'"></span>
                 </h2>-->
-                <p class="weui-msg__desc" style="font-size: 0.13rem">已成功为号码 <span ng-bind="mobile"></span> 充值 <span
-                        ng-bind="rechargeDetails"></span>，</p>
-                <p class="weui-msg__desc" style="font-size: 0.13rem">请留意短信到账通知。
-                    <em ng-if="getCoupon > 0"><span ng-bind="getCoupon"></span>元优惠券已存入该号码账户中</em>
-                </p>
+                <div ng-if="productType === 'Card'">
+                    <p class="weui-msg__desc" style="font-size: 0.13rem;text-align: left">您的申请已经成功提交！若资料无误，手机卡将在5个工作日内寄到，请留意配送人员来电。</p>
+                    <p class="weui-msg__desc" style="font-size: 0.13rem;text-align: left">温馨提示：手机卡免费配送，预存200元的话费将以货到付款形式收取，取卡前请您准备好哦！</p>
+                </div>
+                <div ng-if="productType !== 'Card'">
+                    <p class="weui-msg__desc" style="font-size: 0.13rem">已成功为号码 <span ng-bind="mobile"></span> 充值 <span
+                            ng-bind="rechargeDetails"></span>，</p>
+                    <p class="weui-msg__desc" style="font-size: 0.13rem">请留意短信到账通知。
+                        <em ng-if="getCoupon > 0"><span ng-bind="getCoupon"></span>元优惠券已存入该号码账户中</em>
+                    </p>
+                </div>
             </div>
 
             <div class="weui-cells" style="text-align: left;background: #eff5ff">
@@ -21,8 +27,12 @@
                     <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                         <img src="views/msg/watch/qr-code.jpg" style="width: 1rem;display: block">
                     </div>
-                    <div class="weui-cell__bd">
-                        <p style="font-size: 0.13rem">识别二维码，关注公众号领取优惠券</p>
+                    <div class="weui-cell__bd" ng-if="productType === 'Card'">
+                        <p style="font-size: 0.13rem">请先扫描左方二维码或微信搜索公众号<em>【365领流量】</em>并<em>关注</em>。</p>
+                        <p style="font-size: 0.12rem;color: #888888;margin-top: 0.1rem">当您收到手机卡后，需要在公众号<em>进行激活</em>。成功激活后，200元话费立即到账。</p>
+                    </div>
+                    <div class="weui-cell__bd" ng-if="productType !== 'Card'">
+                        <p style="font-size: 0.13rem">识别二维码，关注公众号<span ng-if="productType !== 'Card'">领取优惠券</span></p>
                         <p style="font-size: 0.12rem;color: #888888;margin-top: 0.1rem">长按二维码，并点击“识别图中二维码”<br>即可关注“<em>365领流量</em>”官方公众号</p>
                     </div>
                 </div>
@@ -30,7 +40,10 @@
 
             <div class="weui-msg__opr-area" style="margin-top: 0.4rem">
                 <p class="weui-btn-area" style="width: 40%;margin: 0 auto;">
-                    <a href="http://app.yfq.cn/phone/lj/B/phones?appType=365flow" class="weui-btn weui-btn_primary">逛逛手机商城</a>
+                    <a href="https://kdt.im/fBSu5h" user-tracker="{{productType}}Mall" class="weui-btn weui-btn_primary">
+                        <span ng-if="productType !== 'Card'">逛逛手机批发</span>
+                        <span ng-if="productType === 'Card'">为新卡买个手机？</span>
+                    </a>
                 </p>
             </div>
         </div>

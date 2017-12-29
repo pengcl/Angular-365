@@ -11,6 +11,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
         });
 }]).controller('seckillController', ['$scope', '$http', '$interval', 'UserSvc', 'ShareSvc', 'ActiveCodeSvc', 'SmsSvc', function ($scope, $http, $interval, UserSvc, ShareSvc, ActiveCodeSvc, SmsSvc) {
 
+    window.location.href = "https://h5.youzan.com/v2/goods/2ohtldcg3iyg6";
+
     UserSvc.getUserInfoByOpenid($scope.openid).then(function success(data) {//获取用户信息
         $scope.userInfo = data;
     });

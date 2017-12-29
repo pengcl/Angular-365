@@ -42,13 +42,22 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     OrderSvc.getOrder($scope.orderNo).then(function success(data) {
         $scope.order = angular.fromJson(data)[0];
         if ($scope.order.product.productname == '话费充值') {
+            $scope.productType = "Fee";
             $scope.rechargeDetails = $scope.order.flowPrice.productName + "话费";
             $scope.getCoupon = getFeeCoupon($scope.order.salesOrder.amount, 30);
             writebdLog(appName + '_' + $rootScope.state.name, '_ycxzfcgfee');
-        } else {
+        } else if ($scope.order.product.productname == '流量充值') {
+            $scope.productType = "Flow";
             $scope.rechargeDetails = $scope.order.flowPrice.productName + $scope.order.flowPrice.region + "流量";
             $scope.getCoupon = getFlowCoupon($scope.order.salesOrder.paidamount, 30);
             writebdLog(appName + '_' + $rootScope.state.name, '_ycxzfcgflow');
+        } else {
+            $scope.productType = "Card";
+            if ($location.search().platform && $location.search().platform == 'jrtt') {
+                writebdLog(appName + '_' + $rootScope.state.name, '_' + $scope.productType + 'jrtt_Load');
+            } else {
+                writebdLog(appName + '_' + $rootScope.state.name, '_' + $scope.productType + '_Load');
+            }
         }
     });
 

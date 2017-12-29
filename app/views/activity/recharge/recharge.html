@@ -76,17 +76,37 @@
                         </div>
                     </div>
                     <div class="list-item pure-u-1-3">
-                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFlowMore();" ng-show="flowLimitTo === 5"
+                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFlowMore(mobileValid);" ng-show="flowLimitTo === 5"
                              user-tracker="moreFlow">
                             <div class="title">更多流量包</div>
                         </div>
-                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFlowLess();" ng-show="flowLimitTo === 100"
+                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFlowLess(mobileValid);" ng-show="flowLimitTo === 100"
                              user-tracker="lessFlow">
                             <div class="title">收起</div>
                         </div>
                     </div>
                 </div>
-                <div class="weui-cells__tips pure-g">
+
+                <div ng-show="!mobileValid" class="weui-cells__tips">
+                    <p style="font-size: 0.12rem;">
+                            <span ng-click="dialog.open({
+                    show: true,
+                    title: '优惠券使用说明',
+                    body: '<p> 1、充值流量包即可获得相同价值的优惠券（按实际支付金额赠送，只取整数）</p><p>2、单次充值最多可获赠30元优惠券。</p><p>3、优惠券可在下次充值时抵扣支付金额。</p><p>4、流量及话费充值均可使用，请在有效期内使用。</p>',
+                    buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+                    })"
+                                  class="disc-content"
+                                  style="margin-right: 20px;cursor: pointer" user-tracker="couponInfo">
+                        <img src="views/activity/recharge/icon-coupon.png"
+                             style="height:0.14rem;width:auto;display: inline-block;vertical-align: middle">
+                        <span style="display: inline-block;vertical-align: middle;color: #ff6700">充值送等价优惠券，最高30元</span>
+                        <img src="views/activity/recharge/what.png"
+                             style="display: inline-block;vertical-align: middle;width: 0.16rem">
+                    </span>
+                    </p>
+                </div>
+
+                <div ng-show="mobileValid" class="weui-cells__tips pure-g">
                     <div class="pure-u-1-2">
                         <p style="font-size: 0.12rem;">
                             <span ng-click="dialog.open({
@@ -117,7 +137,7 @@
                         <div class="weui-cell__hd"><span class="flag" ng-bind="item.regionName + '流量'"></span></div>
                         <div class="weui-cell__bd">
                             <p style="position: relative">
-                                <del>{{item.costPrice | number : 2}} 元</del>
+                                <del>原价：{{item.costPrice | number : 2}} 元</del>
                             </p>
                         </div>
                         <div class="weui-cell__ft">
@@ -134,7 +154,7 @@
                 <a ng-show="mobileValid" href="javascript:;" ng-class="{true:'',false:'disabled'}[!!flowProduct]"
                    ng-click="pay(mobileValid,flowProduct,regionFlowProduct,flowCoupons)"
                    style="background: #4892ff;margin: 0.07rem 0.15rem 0.45rem 0.15rem;" class="weui-btn weui-btn_warn"
-                   data-a="{{!!flowProduct}}" user-tracker="rechargeFlow">立即充值 ({{flowProduct.regionProducts[0].salesPrice - flowCouponLength | number : 2}})</a>
+                   data-a="{{!!flowProduct}}" user-tracker="rechargeFlow">立即充值 (￥{{flowProduct.regionProducts[0].salesPrice - flowCouponLength | number : 2}})</a>
             </div>
 
 
@@ -155,12 +175,12 @@
                         </div>
                     </div>
                     <div class="list-item pure-u-1-3">
-                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFeeMore();" ng-show="feeLimitTo === 5"
+                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFeeMore(mobileValid);" ng-show="feeLimitTo === 5"
                              user-tracker="moreFee">
                             <div class="title">更多套餐</div>
                             <!--<div class="disc"><span ng-bind="item.regionProducts | flowSalesPrice | number : 2"></span>元</div>-->
                         </div>
-                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFeeLess();" ng-show="feeLimitTo === 100"
+                        <div class="item-box" ng-class="{true:'',false:'disabled'}[mobileValid]" ng-click="getFeeLess(mobileValid);" ng-show="feeLimitTo === 100"
                              user-tracker="lessFee">
                             <div class="title">收起</div>
                             <!--<div class="disc"><span ng-bind="item.regionProducts | flowSalesPrice | number : 2"></span>元</div>-->
@@ -168,7 +188,26 @@
                     </div>
                 </div>
 
-                <div class="weui-cells__tips">
+                <div ng-show="!mobileValid" class="weui-cells__tips">
+                    <p style="font-size: 0.12rem;">
+                            <span ng-click="dialog.open({
+                    show: true,
+                    title: '优惠券使用说明',
+                    body: '<p> 1、充值流量包即可获得相同价值的优惠券（按实际支付金额赠送，只取整数）</p><p>2、单次充值最多可获赠30元优惠券。</p><p>3、优惠券可在下次充值时抵扣支付金额。</p><p>4、流量及话费充值均可使用，请在有效期内使用。</p>',
+                    buttons: [{show: true, txt: '我知道了', eventId: 'hello'}]
+                    })"
+                                  class="disc-content"
+                                  style="margin-right: 20px;cursor: pointer" user-tracker="couponInfo">
+                        <img src="views/activity/recharge/icon-coupon.png"
+                             style="height:0.14rem;width:auto;display: inline-block;vertical-align: middle">
+                        <span style="display: inline-block;vertical-align: middle;color: #ff6700">充值送等价优惠券，最高30元</span>
+                        <img src="views/activity/recharge/what.png"
+                             style="display: inline-block;vertical-align: middle;width: 0.16rem">
+                    </span>
+                    </p>
+                </div>
+
+                <div ng-show="mobileValid" class="weui-cells__tips">
                     <p style="font-size: 0.12rem;"
                        ng-if="regionFeeProduct.costPrice >= 50">
                     <span ng-click="dialog.open({
@@ -196,11 +235,14 @@
                          ng-repeat="item in feeProduct.regionProducts">
                         <div class="weui-cell__bd">
                             <p style="position: relative">
-                                <del ng-if="item.salesPrice <= item.costPrice">{{item.costPrice | number : 2}} 元</del>
+                                <del ng-if="item.salesPrice <= item.costPrice">原价：{{item.costPrice | number : 2}} 元</del>
+                                <span ng-if="item.salesPrice > item.costPrice">原价：{{item.costPrice | number : 2}} 元</span>
                             </p>
                         </div>
                         <div class="weui-cell__ft">
-                            折后价￥{{item.salesPrice | number : 2}}
+                            <span ng-if="item.salesPrice <= item.costPrice">折后价</span>
+                            <span ng-if="item.salesPrice > item.costPrice">销售价</span>
+                            ￥{{item.salesPrice | number : 2}}
                         </div>
                     </div>
                 </div>
@@ -212,7 +254,7 @@
                 <a ng-show="mobileValid" href="javascript:;" ng-class="{true:'',false:'disabled'}[!!feeProduct]"
                    ng-click="pay(mobileValid,feeProduct,regionFeeProduct,feeCoupons)"
                    style="background: #4892ff;margin: 0.07rem 0.15rem 0.45rem 0.15rem;" class="weui-btn weui-btn_warn"
-                   user-tracker="rechargeFee">立即充值 ({{(feeProduct.regionProducts[0].salesPrice - feeCouponLength) | number : 2}})</a>
+                   user-tracker="rechargeFee">立即充值 (￥{{(feeProduct.regionProducts[0].salesPrice - feeCouponLength) | number : 2}})</a>
             </div>
         </form>
     </div>
